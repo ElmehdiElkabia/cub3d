@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:18:26 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 12:20:59 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void parse_texture(char *line, t_game *game, int id);
 void parse_colors(char *line, t_game *game, int id);
 int print_error(char *str);
 void ft_free_split(char **arr);
+void init_game(t_game *data);
 #endif
