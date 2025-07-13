@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/11 15:28:34 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 11:20:28 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ typedef struct s_game
 
 
 void	*parser_file(char *file, t_game *game);
+void parse_texture(char *line, t_game *game, int id);
 int	print_error(char *str);
 #endif

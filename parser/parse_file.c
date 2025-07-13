@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 10:57:59 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 11:19:52 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void detect_type(char *line, t_game *game)
 {
 	(void)game;
 	if (starts_with(line, "NO"))
-		printf("we have NO\n");
+		parse_texture(line, game, 0);
 	else if (starts_with(line, "SO"))
-		printf("we have SO\n");
+		parse_texture(line, game, 1);
 	else if (starts_with(line, "WE"))
-		printf("we have WE\n");
+		parse_texture(line, game, 2);
 	else if (starts_with(line, "EA"))
-		printf("we have EA\n");
+		parse_texture(line, game, 3);
 	else if (starts_with(line, "F"))
 		printf("we have F\n");
 	else if (starts_with(line, "C"))
@@ -89,5 +89,7 @@ void *parser_file(char *file, t_game *game)
 		detect_type(line, game);
 		line = get_next_line(fd);
 	}
+	for (int j = 0;j < 4;j++)
+		printf("path ==> %s\n", game->texture[j].path);
 	return (NULL);
 }
