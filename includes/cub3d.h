@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/10 17:47:28 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:28:34 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include "minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 typedef struct s_texture
 {
@@ -89,6 +90,6 @@ typedef struct s_game
 } t_game;
 
 
-void	parser_file(char *file, t_game *game);
+void	*parser_file(char *file, t_game *game);
 int	print_error(char *str);
 #endif

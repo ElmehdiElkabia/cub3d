@@ -6,18 +6,88 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/10 17:40:52 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 10:57:59 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	parser_file(char *file, t_game *game)
+static int is_empty_line(char *line)
 {
-	char	*line;
-	int	fd;
+	int i;
+
+	if (!line)
+		return (1);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '\t' && line[i] != ' ' && line[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int starts_with(char *line, char *id)
+{
+	int i;
+	int j;
+
+	if (!line | !id)
+		return (0);
+	i = 0;
+	j = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	while (line[i] && id[j] && line[i] == id[j])
+	{
+		i++;
+		j++;
+	}
+	if (id[j] == '\0' && (line[i] == ' ' || line[i] == '\t' || line[i] == '\0' || line[i] == '\n'))
+		return (1);
+	return (0);
+}
+
+void detect_type(char *line, t_game *game)
+{
+	(void)game;
+	if (starts_with(line, "NO"))
+		printf("we have NO\n");
+	else if (starts_with(line, "SO"))
+		printf("we have SO\n");
+	else if (starts_with(line, "WE"))
+		printf("we have WE\n");
+	else if (starts_with(line, "EA"))
+		printf("we have EA\n");
+	else if (starts_with(line, "F"))
+		printf("we have F\n");
+	else if (starts_with(line, "C"))
+		printf("we have C\n");
+	else
+		printf("unknown line: %s\n", line);
+}
+
+void *parser_file(char *file, t_game *game)
+{
+	char *line;
+	int fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return ()
+		return (NULL);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (is_empty_line(line))
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue;
+		}
+		// printf("line == > ");
+		detect_type(line, game);
+		line = get_next_line(fd);
+	}
+	return (NULL);
 }

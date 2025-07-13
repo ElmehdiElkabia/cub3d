@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/10 18:08:34 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 10:02:19 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 void init_mlx(t_mlx *mlx)
 {
 	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
-		ft_destroy();
+	// if (!mlx->mlx_ptr)
+	// 	ft_destroy();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 100, 100, "Cub3D");
-	if (!mlx->win_ptr)
-		ft_destroy();
+	// if (!mlx->win_ptr)
+	// 	ft_destroy();
 }
 
 void init_img(t_game *data)
 {
 	data->img.img = mlx_new_image(data->mlx.mlx_ptr, 100, 100);
-	if (!data->img.img)
-		ft_destroy();
+	// if (!data->img.img)
+	// 	ft_destroy();
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_len, &data->img.endian);
-	if (!data->img.addr)
-		ft_destroy();
+	// if (!data->img.addr)
+	// 	ft_destroy();
 }
 
 void init_map(t_map *map)
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 {
 	t_game data;
 
-	if (argc != 2 || check_filename(argv[1]))
+	if (argc != 2) // || check_filename(argv[1])
 		return (print_error("Usage: ./cub3D <map_file.cub>"));
 	else
 	{
