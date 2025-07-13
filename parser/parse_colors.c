@@ -6,13 +6,13 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 11:43:45 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 12:19:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int skip_identifier(char *line, int id)
+static int skip_identifier(char *line, int id)
 {
 	int i;
 	char *type;
@@ -24,16 +24,39 @@ int skip_identifier(char *line, int id)
 		type = "C";
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	while (*type && line[i] == *type)
-	{
-		i++;
-		type++;
-	}
+	if (line[i] != *type)
+		return (-1);
+	i++;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (*type != '\0')
-		return (-1);
 	return (i);
+}
+void get_color(char **colors, t_game *game, int id)
+{
+	int r;
+	int g;
+	int b;
+
+	r = ft_atoi(colors[0]);
+	g = ft_atoi(colors[1]);
+	b = ft_atoi(colors[2]);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	{
+		ft_free_split(colors);
+		print_error("Color value out of range");
+	}
+	if (id == 0)
+	{
+		game->map.floor.r = r;
+		game->map.floor.g = g;
+		game->map.floor.b = b;
+	}
+	else if (id == 1)
+	{
+		game->map.ceiling.r = r;
+		game->map.ceiling.g = g;
+		game->map.ceiling.b = b;
+	}
 }
 
 void parse_colors(char *line, t_game *game, int id)
@@ -45,18 +68,11 @@ void parse_colors(char *line, t_game *game, int id)
 	if (i == -1)
 		print_error("Invalid color line");
 	colors = ft_split(line + i, ',');
-	if (!colors)
-		print_error("Malloc failed in parse_colors");
-	if (id == 0)
+	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
 	{
-		game->map.floor.r = ft_atoi(colors[0]);
-		game->map.floor.g = ft_atoi(colors[1]);
-		game->map.floor.b = ft_atoi(colors[2]);
+		ft_free_split(colors);
+		print_error("Invalid color format (must be R,G,B)");
 	}
-	else if (id == 1)
-	{
-		game->map.ceiling.r = ft_atoi(colors[0]);
-		game->map.ceiling.g = ft_atoi(colors[1]);
-		game->map.ceiling.b = ft_atoi(colors[2]);
-	}
+	get_color(colors, game, id);
+	ft_free_split(colors);
 }

@@ -6,21 +6,21 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 11:20:28 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 12:18:26 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H
+#define CUB3D_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <math.h>
-# include "minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <math.h>
+#include "minilibx-linux/mlx.h"
+#include "../libft/libft.h"
+#include "../get_next_line/get_next_line.h"
 
 typedef struct s_texture
 {
@@ -89,8 +89,9 @@ typedef struct s_game
 	t_texture texture[4];
 } t_game;
 
-
-void	*parser_file(char *file, t_game *game);
+void *parser_file(char *file, t_game *game);
 void parse_texture(char *line, t_game *game, int id);
-int	print_error(char *str);
+void parse_colors(char *line, t_game *game, int id);
+int print_error(char *str);
+void ft_free_split(char **arr);
 #endif

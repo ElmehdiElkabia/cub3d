@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 11:33:46 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 12:15:37 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,8 @@ void *parser_file(char *file, t_game *game)
 			line = get_next_line(fd);
 			continue;
 		}
-		// printf("line == > ");
 		detect_type(line, game);
 		line = get_next_line(fd);
 	}
-	// for (int j = 0;j < 4;j++)
-	// 	printf("path ==> %s\n", game->texture[j].path);
 	return (NULL);
 }
