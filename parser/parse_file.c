@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 11:19:52 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/13 11:33:46 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int starts_with(char *line, char *id)
 
 void detect_type(char *line, t_game *game)
 {
-	(void)game;
 	if (starts_with(line, "NO"))
 		parse_texture(line, game, 0);
 	else if (starts_with(line, "SO"))
@@ -61,9 +60,9 @@ void detect_type(char *line, t_game *game)
 	else if (starts_with(line, "EA"))
 		parse_texture(line, game, 3);
 	else if (starts_with(line, "F"))
-		printf("we have F\n");
+		parse_colors(line, game, 0);
 	else if (starts_with(line, "C"))
-		printf("we have C\n");
+		parse_colors(line, game, 1);
 	else
 		printf("unknown line: %s\n", line);
 }
@@ -89,7 +88,7 @@ void *parser_file(char *file, t_game *game)
 		detect_type(line, game);
 		line = get_next_line(fd);
 	}
-	for (int j = 0;j < 4;j++)
-		printf("path ==> %s\n", game->texture[j].path);
+	// for (int j = 0;j < 4;j++)
+	// 	printf("path ==> %s\n", game->texture[j].path);
 	return (NULL);
 }
