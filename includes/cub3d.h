@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:20:59 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:48:31 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,26 @@ typedef struct s_game
 	t_map map;
 	t_player player;
 	t_texture texture[4];
+	char **map_lines;
+	int	map_line_count;
+	int	in_map;
 } t_game;
 
 void *parser_file(char *file, t_game *game);
 void parse_texture(char *line, t_game *game, int id);
 void parse_colors(char *line, t_game *game, int id);
+void	parse_map(char *line, t_game *game);
+int	is_map_line(char *line);
 int print_error(char *str);
 void ft_free_split(char **arr);
 void init_game(t_game *data);
+void check_map(t_game *game);
+
+
+
+
+
+
+
+void print_map(char **grid);
 #endif

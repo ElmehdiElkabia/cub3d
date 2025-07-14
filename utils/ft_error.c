@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/10 17:31:46 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:05:56 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int	print_error(char *str)
 {
 	printf("%s\n", str);
-	return (1);
+	exit(1);
 }

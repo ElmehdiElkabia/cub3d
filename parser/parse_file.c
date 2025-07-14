@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:15:37 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:54:49 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void detect_type(char *line, t_game *game)
 		parse_colors(line, game, 0);
 	else if (starts_with(line, "C"))
 		parse_colors(line, game, 1);
+	else if (game->in_map || is_map_line(line))
+	{
+		game->in_map = 1;
+		parse_map(line, game);
+	}
 	else
 		printf("unknown line: %s\n", line);
 }
@@ -85,7 +90,14 @@ void *parser_file(char *file, t_game *game)
 			continue;
 		}
 		detect_type(line, game);
+		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
+	game->map.grid = game->map_lines;
+	game->map.height = game->map_line_count;
+	// print_map(game->map.grid);
+	check_map(game);
+	
 	return (NULL);
 }

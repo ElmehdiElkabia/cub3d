@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:19:05 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:18:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void get_color(char **colors, t_game *game, int id)
 	}
 }
 
+
+
+
 void parse_colors(char *line, t_game *game, int id)
 {
 	int i;
@@ -73,6 +76,11 @@ void parse_colors(char *line, t_game *game, int id)
 		ft_free_split(colors);
 		print_error("Invalid color format (must be R,G,B)");
 	}
+	// if (check_color(colors))
+	// {
+	// 	ft_free_split(colors);
+	// 	print_error("Invalid color (must be number)");
+	// }
 	get_color(colors, game, id);
 	ft_free_split(colors);
 }
