@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:18:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/14 16:47:55 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:34:08 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ void	parse_map(char *line, t_game *game)
 	if (!game->map_lines)
 		print_error("Map allocation failed");
 	game->map_line_count++;
+}
+
+
+
+
+void check_map(t_game *game)
+{
+	check_characters(game);
+	check_player(game);     // exactly one player, store its position
+	check_closure(game);    // wall check (flood fill or border check)
 }

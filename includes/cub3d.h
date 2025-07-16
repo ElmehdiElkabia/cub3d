@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/14 16:48:31 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:34:48 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ int print_error(char *str);
 void ft_free_split(char **arr);
 void init_game(t_game *data);
 void check_map(t_game *game);
-
+void	check_characters(t_game *game);
+void	check_player(t_game *game);
+void check_closure(t_game *game);
 
 
 
