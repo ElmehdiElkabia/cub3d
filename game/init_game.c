@@ -6,33 +6,13 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:20:43 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:12:57 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void init_mlx(t_mlx *mlx)
-{
-	mlx->mlx_ptr = mlx_init();
-	// if (!mlx->mlx_ptr)
-	// 	ft_destroy();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 100, 100, "Cub3D");
-	// if (!mlx->win_ptr)
-	// 	ft_destroy();
-}
-
-void init_img(t_game *data)
-{
-	data->img.img = mlx_new_image(data->mlx.mlx_ptr, 100, 100);
-	// if (!data->img.img)
-	// 	ft_destroy();
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.line_len, &data->img.endian);
-	// if (!data->img.addr)
-	// 	ft_destroy();
-}
-
-void init_map(t_map *map)
+void	init_map(t_map *map)
 {
 	map->grid = NULL;
 	map->height = 0;
@@ -45,7 +25,7 @@ void init_map(t_map *map)
 	map->ceiling.b = 0;
 }
 
-void init_player(t_player *player)
+void	init_player(t_player *player)
 {
 	player->pos.x = 0;
 	player->pos.y = 0;
@@ -57,9 +37,9 @@ void init_player(t_player *player)
 	player->rot_speed = 0;
 }
 
-void init_texture(t_game *data)
+void	init_texture(t_game *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -76,11 +56,9 @@ void init_texture(t_game *data)
 	}
 }
 
-void init_game(t_game *data)
+void	init_game(t_game *data)
 {
 	ft_bzero(data, sizeof(t_game));
-	init_mlx(&data->mlx);
-	init_img(data);
 	init_map(&data->map);
 	init_player(&data->player);
 	init_texture(data);

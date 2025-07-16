@@ -12,10 +12,10 @@
 
 #include "../includes/cub3d.h"
 
-int skip_identifier(char *line, int id)
+int	skip_identifier(char *line, int id)
 {
-	int i;
-	char *type;
+	int		i;
+	char	*type;
 
 	i = 0;
 	if (id == 0)
@@ -40,10 +40,10 @@ int skip_identifier(char *line, int id)
 	return (i);
 }
 
-void parse_texture(char *line, t_game *game, int id)
+void	parse_texture(char *line, t_game *game, int id)
 {
-	int i;
-	int path_start;
+	int	i;
+	int	path_start;
 
 	if (game->texture[id].path)
 		print_error("Texture defined more than once");

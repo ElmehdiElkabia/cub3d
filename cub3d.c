@@ -6,12 +6,11 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:20:31 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:20:14 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-
 
 
 int main(int argc, char **argv)
@@ -29,7 +28,10 @@ int main(int argc, char **argv)
 		parser_file(argv[1], &data);
 		// 3. Set player position & direction
 		// 4. Init MiniLibX (mlx, window, image buffer)
+		init_minilibx(&data);
+
 		// 5. Start rendering loop (mlx_loop_hook / mlx_loop)
+		mlx_loop(data.mlx.mlx_ptr);
 		// 6. On exit, free all resources
 	}
 }

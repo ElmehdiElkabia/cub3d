@@ -6,16 +6,16 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/14 17:18:39 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:15:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int skip_identifier(char *line, int id)
+static int	skip_identifier(char *line, int id)
 {
-	int i;
-	char *type;
+	int		i;
+	char	*type;
 
 	i = 0;
 	if (id == 0)
@@ -31,11 +31,12 @@ static int skip_identifier(char *line, int id)
 		i++;
 	return (i);
 }
-void get_color(char **colors, t_game *game, int id)
+
+void	get_color(char **colors, t_game *game, int id)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
@@ -59,13 +60,10 @@ void get_color(char **colors, t_game *game, int id)
 	}
 }
 
-
-
-
-void parse_colors(char *line, t_game *game, int id)
+void	parse_colors(char *line, t_game *game, int id)
 {
-	int i;
-	char **colors;
+	int		i;
+	char	**colors;
 
 	i = skip_identifier(line, id);
 	if (i == -1)
@@ -80,7 +78,7 @@ void parse_colors(char *line, t_game *game, int id)
 	// {
 	// 	ft_free_split(colors);
 	// 	print_error("Invalid color (must be number)");
-	// }
+	// } // must by ayoub
 	get_color(colors, game, id);
 	ft_free_split(colors);
 }

@@ -6,15 +6,15 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/14 16:54:49 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:14:19 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int is_empty_line(char *line)
+static int	is_empty_line(char *line)
 {
-	int i;
+	int	i;
 
 	if (!line)
 		return (1);
@@ -28,10 +28,10 @@ static int is_empty_line(char *line)
 	return (1);
 }
 
-int starts_with(char *line, char *id)
+int	starts_with(char *line, char *id)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (!line | !id)
 		return (0);
@@ -44,12 +44,13 @@ int starts_with(char *line, char *id)
 		i++;
 		j++;
 	}
-	if (id[j] == '\0' && (line[i] == ' ' || line[i] == '\t' || line[i] == '\0' || line[i] == '\n'))
+	if (id[j] == '\0' && (line[i] == ' ' || line[i] == '\t' || line[i] == '\0'
+			|| line[i] == '\n'))
 		return (1);
 	return (0);
 }
 
-void detect_type(char *line, t_game *game)
+void	detect_type(char *line, t_game *game)
 {
 	if (starts_with(line, "NO"))
 		parse_texture(line, game, 0);
@@ -72,10 +73,10 @@ void detect_type(char *line, t_game *game)
 		printf("unknown line: %s\n", line);
 }
 
-void *parser_file(char *file, t_game *game)
+void	*parser_file(char *file, t_game *game)
 {
-	char *line;
-	int fd;
+	char	*line;
+	int		fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -87,7 +88,7 @@ void *parser_file(char *file, t_game *game)
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		detect_type(line, game);
 		free(line);
@@ -96,8 +97,6 @@ void *parser_file(char *file, t_game *game)
 	close(fd);
 	game->map.grid = game->map_lines;
 	game->map.height = game->map_line_count;
-	// print_map(game->map.grid);
 	check_map(game);
-	
 	return (NULL);
 }

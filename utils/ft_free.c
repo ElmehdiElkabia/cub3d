@@ -12,8 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
-
 void	ft_free_split(char **arr)
 {
 	int	i;

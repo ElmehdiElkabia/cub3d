@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:18:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 18:34:08 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/16 20:14:47 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ char	**append_map_line(char **old, char *new_line, int size)
 	free(old);
 	return (new);
 }
-void print_map(char **grid)
-{
-	int i = 0;
 
+void	print_map(char **grid)
+{
+	int	i;
+
+	i = 0;
 	while (grid[i])
 	{
 		printf("%s\n", grid[i]);
@@ -42,21 +44,18 @@ void print_map(char **grid)
 	}
 }
 
-
 void	parse_map(char *line, t_game *game)
 {
-	game->map_lines = append_map_line(game->map_lines, line, game->map_line_count);
+	game->map_lines = append_map_line(game->map_lines, line,
+			game->map_line_count);
 	if (!game->map_lines)
 		print_error("Map allocation failed");
 	game->map_line_count++;
 }
 
-
-
-
-void check_map(t_game *game)
+void	check_map(t_game *game)
 {
 	check_characters(game);
-	check_player(game);     // exactly one player, store its position
-	check_closure(game);    // wall check (flood fill or border check)
+	check_player(game);
+	check_closure(game);
 }
