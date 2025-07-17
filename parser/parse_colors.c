@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:15:05 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:18:43 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,28 @@ void	get_color(char **colors, t_game *game, int id)
 	}
 }
 
+int	check_color(char **colors)
+{
+	int	slot;
+	int i;
+
+	slot = 0;
+	while (colors[slot])
+	{
+		i = 0;
+		while (colors[slot][i])
+		{
+			if(colors[slot][i] == '\n') // andna mochkil f line dyal color katkon fih \n khas thayad hyt adir lina machakil mn ba3d 
+				break ;
+			if (!(colors[slot][i] >= '0' && colors[slot][i] <= '9'))
+				return (1);
+			i++;
+		}
+		slot++;
+	}
+	return (0);
+}
+
 void	parse_colors(char *line, t_game *game, int id)
 {
 	int		i;
@@ -74,11 +96,11 @@ void	parse_colors(char *line, t_game *game, int id)
 		ft_free_split(colors);
 		print_error("Invalid color format (must be R,G,B)");
 	}
-	// if (check_color(colors))
-	// {
-	// 	ft_free_split(colors);
-	// 	print_error("Invalid color (must be number)");
-	// } // must by ayoub
+	if (check_color(colors))
+	{
+		ft_free_split(colors);
+		print_error("Invalid color (must be number)");
+	}
 	get_color(colors, game, id);
 	ft_free_split(colors);
 }
