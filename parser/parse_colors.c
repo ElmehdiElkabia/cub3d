@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/17 10:18:43 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:14:34 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ int	check_color(char **colors)
 		i = 0;
 		while (colors[slot][i])
 		{
-			if(colors[slot][i] == '\n') // andna mochkil f line dyal color katkon fih \n khas thayad hyt adir lina machakil mn ba3d 
-				break ;
 			if (!(colors[slot][i] >= '0' && colors[slot][i] <= '9'))
 				return (1);
 			i++;
@@ -81,7 +79,21 @@ int	check_color(char **colors)
 	}
 	return (0);
 }
-
+void	edit_the_last_slot_of_colors(char **colors)
+{
+	int slot;
+	int i;
+	
+	slot = 0;
+	i = 0;
+	while (colors[slot])
+		slot++;
+	while (colors[slot - 1][i])
+		i++;
+	if (colors[slot - 1][i - 1] == '\n')
+		colors[slot - 1][i - 1] = '\0';
+	return ;
+}
 void	parse_colors(char *line, t_game *game, int id)
 {
 	int		i;
@@ -96,6 +108,7 @@ void	parse_colors(char *line, t_game *game, int id)
 		ft_free_split(colors);
 		print_error("Invalid color format (must be R,G,B)");
 	}
+	edit_the_last_slot_of_colors(colors);
 	if (check_color(colors))
 	{
 		ft_free_split(colors);
