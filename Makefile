@@ -1,8 +1,9 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I/path/to/minilibx
 
-MFLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
+
+MFLAGS = -Lincludes/mlx -lmlx -lXext -lX11 -lm -lbsd
 
 NAME = cub3D
 
