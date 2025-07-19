@@ -26,13 +26,13 @@
 //     while (y < data->map.height)
 //     {
 //         x = 0;
-//         while (x < data->map.width)
+//         while (x < ft_strlen(data->map.grid[y]))
 //         {
 //             if(data->map.grid[y][x] == '1')
 //                 draw_square();
 //             else if(data->map.grid[y][x] == '0')
 //                 draw_square();
-//             else if(data->map.grid[y][x] == 'N')
+//             else if(data->map.grid[y][x] == 'N' || data->map.grid[y][x] == 'W' || data->map.grid[y][x] == 'E' || data->map.grid[y][x] == 'S')
 //                 draw_cercle();
 //             else if(data->map.grid[y][x] == ' ')
 //                 draw_square();
