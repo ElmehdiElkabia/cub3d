@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 13:21:21 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/07/19 15:08:42 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void			init_game(t_game *data);
 void			init_minilibx(t_game *data);
 
 void			print_map(char **grid);
+
+void	load_textures(t_game *game);
 
 void	set_player_direction(t_game *game);
 
