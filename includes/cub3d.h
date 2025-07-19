@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 12:50:39 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:21:21 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+#define IMAGE_HIEGHT 720
+#define IMAGE_WIDTH 1280
 
 typedef struct s_texture
 {
