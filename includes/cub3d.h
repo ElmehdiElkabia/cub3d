@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:17:56 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:50:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "mlx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -109,6 +109,7 @@ void			init_minilibx(t_game *data);
 
 void			print_map(char **grid);
 
+void	set_player_direction(t_game *game);
 
 void	flood_fill(char **map, int x, int y);
 void	find_player_position(char **map, int *px, int *py);
