@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 15:08:42 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:19:06 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,11 @@ void			init_minilibx(t_game *data);
 
 void			print_map(char **grid);
 
-void	load_textures(t_game *game);
+// void	load_textures(t_game *game);
 
 void	set_player_direction(t_game *game);
+
+void drawing_map(t_game *data);
 
 void	flood_fill(char **map, int x, int y);
 void	find_player_position(char **map, int *px, int *py);

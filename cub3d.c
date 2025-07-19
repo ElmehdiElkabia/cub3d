@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 15:21:19 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:19:13 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int main(int argc, char **argv)
 		// 4. Init MiniLibX (mlx, window, image buffer)
 		init_minilibx(&data);
 		// 5. Start rendering loop (mlx_loop_hook / mlx_loop)
+		drawing_map(&data);
+		mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.win_ptr, data.img.img, 0, 0);
 		mlx_loop(data.mlx.mlx_ptr);
 		// 6. On exit, free all resources
 	}
