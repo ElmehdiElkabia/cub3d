@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 17:19:06 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 22:18:49 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ void			print_map(char **grid);
 
 void	set_player_direction(t_game *game);
 
-void drawing_map(t_game *data);
+void	drawing_map(t_game *data);
+int		update_player(int keycode, t_game *game);
 
 void	flood_fill(char **map, int x, int y);
 void	find_player_position(char **map, int *px, int *py);

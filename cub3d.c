@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 17:19:13 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 22:18:55 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-
 
 int main(int argc, char **argv)
 {
@@ -21,7 +20,6 @@ int main(int argc, char **argv)
 		return (print_error("Usage: ./cub3D <map_file.cub>"));
 	else
 	{
-
 		// 1. Init game struct (zero it)
 		init_game(&data);
 		// 2. Parse the .cub file → fill data.map, data.textures, data.floor/ceiling
@@ -34,6 +32,7 @@ int main(int argc, char **argv)
 		// 5. Start rendering loop (mlx_loop_hook / mlx_loop)
 		drawing_map(&data);
 		mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.win_ptr, data.img.img, 0, 0);
+		mlx_hook(data.mlx.win_ptr, 2, 1L<<0, update_player, &data);
 		mlx_loop(data.mlx.mlx_ptr);
 		// 6. On exit, free all resources
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:12:57 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/19 21:30:12 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_player(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0;
-	player->move_speed = 0;
-	player->rot_speed = 0;
+	player->move_speed = 0.05;
+	player->rot_speed = 0.05;
 }
 
 void	init_texture(t_game *data)
