@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 16:58:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 17:17:45 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/20 10:53:16 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // hadchy ba9i khdam alih mat9isoch !!
 
-#define TILE_SIZE 10
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -92,4 +91,5 @@ void	drawing_map(t_game *data)
 		y++;
 	}
 	draw_player(data);
+	draw_fov(data);
 }

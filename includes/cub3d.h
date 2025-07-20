@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/19 22:18:49 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/07/20 09:32:31 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 #define IMAGE_HIEGHT 720
 #define IMAGE_WIDTH 1280
+#define TILE_SIZE 16
 
 typedef struct s_texture
 {
@@ -117,6 +118,8 @@ void			print_map(char **grid);
 void	set_player_direction(t_game *game);
 
 void	drawing_map(t_game *data);
+void	draw_fov(t_game *game);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		update_player(int keycode, t_game *game);
 
 void	flood_fill(char **map, int x, int y);
