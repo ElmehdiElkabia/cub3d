@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/20 09:32:31 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:08:03 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #define IMAGE_HIEGHT 720
 #define IMAGE_WIDTH 1280
-#define TILE_SIZE 16
+#define TILE_SIZE 10
 
 typedef struct s_texture
 {

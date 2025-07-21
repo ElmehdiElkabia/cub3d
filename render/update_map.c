@@ -33,10 +33,10 @@ int	update_player(int keycode, t_game *game)
 	int map_y = (int)(new_y);
 	
 	update_new_pos(keycode, &new_x, &new_y, game);
-	if (game->map.grid[map_y][(int)(new_x + 0.2)] != '1' &&
-		game->map.grid[map_y][(int)(new_x - 0.2)] != '1' &&
-		game->map.grid[(int)(new_y + 0.2)][map_x] != '1' &&
-		game->map.grid[(int)(new_y - 0.2)][map_x] != '1')
+	if (game->map.grid[map_y][(int)(new_x)] != '1' &&
+		game->map.grid[map_y][(int)(new_x)] != '1' &&
+		game->map.grid[(int)(new_y)][map_x] != '1' &&
+		game->map.grid[(int)(new_y)][map_x] != '1')
 	{
 		game->player.pos.x = new_x;
 		game->player.pos.y = new_y;
