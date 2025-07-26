@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 16:58:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/20 10:53:16 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:50:32 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_player(t_game *data)
 	int	dy;
 	int	dx;
 
-	size = 5;
+	size = 10;
 	y = data->player.pos.y * TILE_SIZE - size / 2;
 	x = data->player.pos.x * TILE_SIZE - size / 2;
 	dy = 0;
