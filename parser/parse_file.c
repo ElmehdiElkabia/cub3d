@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:14:19 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:14:30 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,24 @@ void	detect_type(char *line, t_game *game)
 		printf("unknown line: %s\n", line);
 }
 
+int	get_map_width(t_game *data)
+{
+	int	max_width;
+	int	y;
+	int current_width;
+	
+	max_width = 0;
+    y = 0;
+    while (y < data->map.height)
+    {
+        current_width = (int)ft_strlen(data->map.grid[y]);
+        if (current_width > max_width)
+            max_width = current_width;
+        y++;
+    }
+	return (max_width);
+}
+
 void	*parser_file(char *file, t_game *game)
 {
 	char	*line;
@@ -97,6 +115,7 @@ void	*parser_file(char *file, t_game *game)
 	close(fd);
 	game->map.grid = game->map_lines;
 	game->map.height = game->map_line_count;
+	game->map.width = get_map_width(game);
 	check_map(game);
 	return (NULL);
 }
