@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 16:58:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/26 16:14:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:37:07 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	draw_grid_lines(t_game *data)
     int	y;
     int	px;
     int	py;
-
 	
+	// Draw vertical lines
     x = 0;
     while (x <= data->map.width * TILE_SIZE)
     {
@@ -88,7 +88,6 @@ void	draw_grid_lines(t_game *data)
         }
         x += TILE_SIZE;
     }
-
     // Draw horizontal lines
     y = 0;
     while (y <= data->map.height * TILE_SIZE)
