@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 16:58:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/21 12:50:32 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:14:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,40 @@ void	draw_player(t_game *data)
 	}
 }
 
+void	draw_grid_lines(t_game *data)
+{
+    int	x;
+    int	y;
+    int	px;
+    int	py;
+
+	
+    x = 0;
+    while (x <= data->map.width * TILE_SIZE)
+    {
+        py = 0;
+        while (py < data->map.height * TILE_SIZE)
+        {
+            my_mlx_pixel_put(&data->img, x, py, 0x000000); // black grid lines
+            py++;
+        }
+        x += TILE_SIZE;
+    }
+
+    // Draw horizontal lines
+    y = 0;
+    while (y <= data->map.height * TILE_SIZE)
+    {
+        px = 0;
+        while (px < data->map.width * TILE_SIZE)
+        {
+            my_mlx_pixel_put(&data->img, px, y, 0x000000); // black grid lines
+            px++;
+        }
+        y += TILE_SIZE;
+    }
+}
+
 void	drawing_map(t_game *data)
 {
 	int	y;
@@ -78,7 +112,7 @@ void	drawing_map(t_game *data)
 	while (y < data->map.height)
 	{
 		x = 0;
-		while (data->map.grid[y][x] && x < (int)ft_strlen(data->map.grid[y]))
+		while (data->map.grid[y][x] && x < data->map.width)
 		{
 			if (data->map.grid[y][x] == '1')
 				draw_square(data, y, x, 0x333333);
@@ -90,6 +124,7 @@ void	drawing_map(t_game *data)
 		}
 		y++;
 	}
+	draw_grid_lines(data);
 	draw_player(data);
 	draw_fov(data);
 }
