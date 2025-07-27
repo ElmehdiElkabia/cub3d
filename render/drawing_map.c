@@ -53,7 +53,7 @@ void	draw_player(t_game *data)
 	int	dy;
 	int	dx;
 
-	size = 10;
+	size = 5;
 	y = data->player.pos.y * TILE_SIZE - size / 2;
 	x = data->player.pos.x * TILE_SIZE - size / 2;
 	dy = 0;

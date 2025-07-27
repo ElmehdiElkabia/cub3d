@@ -24,7 +24,7 @@
 
 #define IMAGE_HIEGHT 720
 #define IMAGE_WIDTH 1280
-#define TILE_SIZE 32
+#define TILE_SIZE 8
 
 typedef struct s_texture
 {
@@ -114,6 +114,7 @@ void			init_minilibx(t_game *data);
 void			print_map(char **grid);
 
 // void	load_textures(t_game *game);
+int render_frame(t_game *data);
 
 void	set_player_direction(t_game *game);
 

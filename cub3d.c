@@ -30,10 +30,11 @@ int main(int argc, char **argv)
 		// 4. Init MiniLibX (mlx, window, image buffer)
 		init_minilibx(&data);
 		// 5. Start rendering loop (mlx_loop_hook / mlx_loop)
-		drawing_map(&data);
-		mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.win_ptr, data.img.img, 0, 0);
-		mlx_hook(data.mlx.win_ptr, 2, 1L<<0, update_player, &data);
+		mlx_hook(data.mlx.win_ptr, 2, 1L << 0, update_player, &data);
+		// 6. Render the first frame
+		mlx_loop_hook(data.mlx.mlx_ptr, render_frame, &data);
 		mlx_loop(data.mlx.mlx_ptr);
+
 		// 6. On exit, free all resources
 	}
 }
