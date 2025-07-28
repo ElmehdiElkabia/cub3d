@@ -18,7 +18,7 @@ int render_frame(t_game *data)
     ft_bzero(data->img.addr, IMAGE_HIEGHT * IMAGE_WIDTH * (data->img.bpp / 8));
 
     // Draw 3D view
-
+	raycasting(data);
     // Optionally: draw minimap on top (debug)
 	drawing_map(data);
 

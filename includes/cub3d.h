@@ -115,7 +115,7 @@ void			print_map(char **grid);
 
 // void	load_textures(t_game *game);
 int render_frame(t_game *data);
-
+void raycasting(t_game *data);
 void	set_player_direction(t_game *game);
 
 void	drawing_map(t_game *data);

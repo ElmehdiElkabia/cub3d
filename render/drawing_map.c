@@ -14,21 +14,22 @@
 
 // hadchy ba9i khdam alih mat9isoch !!
 
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	char	*dst;
+	char *dst;
 
+	if (x < 0 || x >= IMAGE_WIDTH || y < 0 || y >= IMAGE_HIEGHT)
+		return;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	draw_square(t_game *game, int grid_y, int grid_x, int color)
+void draw_square(t_game *game, int grid_y, int grid_x, int color)
 {
-	int	py;
-	int	px;
-	int	start_x;
-	int	start_y;
+	int py;
+	int px;
+	int start_x;
+	int start_y;
 
 	start_x = grid_x * TILE_SIZE;
 	start_y = grid_y * TILE_SIZE;
@@ -45,13 +46,13 @@ void	draw_square(t_game *game, int grid_y, int grid_x, int color)
 	}
 }
 
-void	draw_player(t_game *data)
+void draw_player(t_game *data)
 {
-	int	size;
-	int	y;
-	int	x;
-	int	dy;
-	int	dx;
+	int size;
+	int y;
+	int x;
+	int dy;
+	int dx;
 
 	size = 5;
 	y = data->player.pos.y * TILE_SIZE - size / 2;
@@ -69,43 +70,43 @@ void	draw_player(t_game *data)
 	}
 }
 
-void	draw_grid_lines(t_game *data)
+void draw_grid_lines(t_game *data)
 {
-    int	x;
-    int	y;
-    int	px;
-    int	py;
-	
+	int x;
+	int y;
+	int px;
+	int py;
+
 	// Draw vertical lines
-    x = 0;
-    while (x <= data->map.width * TILE_SIZE)
-    {
-        py = 0;
-        while (py < data->map.height * TILE_SIZE)
-        {
-            my_mlx_pixel_put(&data->img, x, py, 0x000000); // black grid lines
-            py++;
-        }
-        x += TILE_SIZE;
-    }
-    // Draw horizontal lines
-    y = 0;
-    while (y <= data->map.height * TILE_SIZE)
-    {
-        px = 0;
-        while (px < data->map.width * TILE_SIZE)
-        {
-            my_mlx_pixel_put(&data->img, px, y, 0x000000); // black grid lines
-            px++;
-        }
-        y += TILE_SIZE;
-    }
+	x = 0;
+	while (x <= data->map.width * TILE_SIZE)
+	{
+		py = 0;
+		while (py < data->map.height * TILE_SIZE)
+		{
+			my_mlx_pixel_put(&data->img, x, py, 0x000000); // black grid lines
+			py++;
+		}
+		x += TILE_SIZE;
+	}
+	// Draw horizontal lines
+	y = 0;
+	while (y <= data->map.height * TILE_SIZE)
+	{
+		px = 0;
+		while (px < data->map.width * TILE_SIZE)
+		{
+			my_mlx_pixel_put(&data->img, px, y, 0x000000); // black grid lines
+			px++;
+		}
+		y += TILE_SIZE;
+	}
 }
 
-void	drawing_map(t_game *data)
+void drawing_map(t_game *data)
 {
-	int	y;
-	int	x;
+	int y;
+	int x;
 
 	y = 0;
 	while (y < data->map.height)
