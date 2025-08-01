@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/28 11:28:16 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/01 03:40:46 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void raycasting(t_game *data)
 			step.x = 1; // move east
 			side_dist.x = (map_pos.x + 1.0 - data->player.pos.x) * delta_dist.x;
 		}
-		if (ray_dir.y < 0) //facing north
+		if (ray_dir.y < 0) // facing north
 		{
 			step.y = -1; // move up
 			side_dist.y = (data->player.pos.y - map_pos.y) * delta_dist.y;
 		}
-		else //facing south
+		else // facing south
 		{
-			step.y = 1;// move down
+			step.y = 1; // move down
 			side_dist.y = (map_pos.y + 1.0 - data->player.pos.y) * delta_dist.y;
 		}
 
@@ -80,18 +80,23 @@ void raycasting(t_game *data)
 		int lineHeight = (int)(IMAGE_HIEGHT / perp_wall_dist);
 		int drawStart = -lineHeight / 2 + IMAGE_HIEGHT / 2;
 		int drawEnd = lineHeight / 2 + IMAGE_HIEGHT / 2;
-
-		int y = drawStart;
-		int color;
-		if (side == 0)
-			color = 0x5bcc21;
-		else
-			color = 0xff42e1;
+		if (drawStart < 0)
+			drawStart = 0;
+		else if (drawStart > IMAGE_HIEGHT)
+			drawStart = IMAGE_HIEGHT - 1;
+		if (drawEnd < 0)
+			drawEnd = 0;
+		else if (drawEnd > IMAGE_HIEGHT)
+			drawEnd = IMAGE_HIEGHT - 1;
+		int y = 0;
+		while (y < drawStart)
+			my_mlx_pixel_put(&data->img, x, y++, 0x00ff00);
+		y = drawStart;
 		while (y < drawEnd)
-		{
-			my_mlx_pixel_put(&data->img, x, y, color);
-			y++;
-		}
+			my_mlx_pixel_put(&data->img, x, y++, 0x0000ff);
+		y = drawEnd;
+		while (y < IMAGE_HIEGHT)
+			my_mlx_pixel_put(&data->img, x, y++, 0xff0000);
 		x++;
 	}
 }
