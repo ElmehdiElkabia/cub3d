@@ -18,7 +18,7 @@ void my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char *dst;
 
-	if (x < 0 || x >= IMAGE_WIDTH || y < 0 || y >= IMAGE_HIEGHT)
+	if (x < 0 || x >= IMAGE_WIDTH || y < 0 || y >= IMAGE_HEIGHT)
 		return;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / MINI_MAP));
 	*(unsigned int *)dst = color;

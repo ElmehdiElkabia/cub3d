@@ -18,14 +18,14 @@ void	init_mlx(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		print_error("mlx init failed");
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, IMAGE_WIDTH, IMAGE_HIEGHT, "Cub3D");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT, "Cub3D");
 	if (!mlx->win_ptr)
 		print_error("indow init failed");
 }
 
 void	init_img(t_game *data)
 {
-	data->img.img = mlx_new_image(data->mlx.mlx_ptr, IMAGE_WIDTH, IMAGE_HIEGHT);
+	data->img.img = mlx_new_image(data->mlx.mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
 	if (!data->img.img)
 		print_error("Image init failed");
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,

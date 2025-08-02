@@ -82,7 +82,8 @@ void raycasting(t_game *data)
 		calc_step(&ray, &data->player);
 		perform_dda(data, &ray);
 		calc_wall_dist(&ray, &data->player);
-		draw_wall_slice(data, &ray, x);
+		// draw_wall_slice(data, &ray, x);
+		texture_mapping(data, &ray, x);
 		x++;
 	}
 }
