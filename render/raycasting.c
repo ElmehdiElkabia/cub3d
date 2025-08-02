@@ -12,97 +12,77 @@
 
 #include "../includes/cub3d.h"
 
+void init_ray(t_game *d, t_ray *r, int x)
+{
+	double camera_x;
+
+	camera_x = 2 * x / (double)IMAGE_WIDTH - 1;
+	r->dir.x = d->player.dir.x + d->player.plane.x * camera_x;
+	r->dir.y = d->player.dir.y + d->player.plane.y * camera_x;
+	r->map.x = (int)d->player.pos.x;
+	r->map.y = (int)d->player.pos.y;
+	r->delta.x = fabs(1 / r->dir.x);
+	r->delta.y = fabs(1 / r->dir.y);
+}
+
+void calc_step(t_ray *r, t_player *p)
+{
+	if (r->dir.x < 0)
+	{
+		r->step.x = -1;
+		r->side.x = (p->pos.x - r->map.x) * r->delta.x;
+	}
+	else
+	{
+		r->step.x = 1;
+		r->side.x = (r->map.x + 1.0 - p->pos.x) * r->delta.x;
+	}
+	if (r->dir.y < 0)
+	{
+		r->step.y = -1;
+		r->side.y = (p->pos.y - r->map.y) * r->delta.y;
+	}
+	else
+	{
+		r->step.y = 1;
+		r->side.y = (r->map.y + 1.0 - p->pos.y) * r->delta.y;
+	}
+}
+
+void perform_dda(t_game *d, t_ray *r)
+{
+	while (1)
+	{
+		if (r->side.x < r->side.y)
+		{
+			r->side.x += r->delta.x;
+			r->map.x += r->step.x;
+			r->hit_side = 0;
+		}
+		else
+		{
+			r->side.y += r->delta.y;
+			r->map.y += r->step.y;
+			r->hit_side = 1;
+		}
+		if (d->map.grid[(int)r->map.y][(int)r->map.x] == '1')
+			break;
+	}
+}
+
 void raycasting(t_game *data)
 {
-	t_vector map_pos;
-	t_vector delta_dist;
-	t_vector ray_dir;
-	t_vector side_dist;
-	t_vector step;
-	double camera_x;
+	t_ray ray;
 	int x;
 
 	x = 0;
 	while (x < IMAGE_WIDTH)
 	{
-		camera_x = 2 * x / (double)IMAGE_WIDTH - 1;
-		map_pos.x = (int)data->player.pos.x;
-		map_pos.y = (int)data->player.pos.y;
-		ray_dir.y = data->player.dir.y + data->player.plane.y * camera_x;
-		ray_dir.x = data->player.dir.x + data->player.plane.x * camera_x;
-		delta_dist.x = fabs(1 / ray_dir.x);
-		delta_dist.y = fabs(1 / ray_dir.y);
-		if (ray_dir.x < 0) // facing west
-		{
-			step.x = -1; // move west
-			side_dist.x = (data->player.pos.x - map_pos.x) * delta_dist.x;
-		}
-		else // facing east
-		{
-			step.x = 1; // move east
-			side_dist.x = (map_pos.x + 1.0 - data->player.pos.x) * delta_dist.x;
-		}
-		if (ray_dir.y < 0) // facing north
-		{
-			step.y = -1; // move up
-			side_dist.y = (data->player.pos.y - map_pos.y) * delta_dist.y;
-		}
-		else // facing south
-		{
-			step.y = 1; // move down
-			side_dist.y = (map_pos.y + 1.0 - data->player.pos.y) * delta_dist.y;
-		}
-
-		int side = 0;
-
-		while (data->map.grid[(int)map_pos.y][(int)map_pos.x] != '1')
-		{
-			if (side_dist.x < side_dist.y)
-			{
-				side_dist.x += delta_dist.x;
-				map_pos.x += step.x;
-				side = 0;
-			}
-			else
-			{
-				side_dist.y += delta_dist.y;
-				map_pos.y += step.y;
-				side = 1;
-			}
-		}
-		double perp_wall_dist;
-
-		if (side == 0)
-			perp_wall_dist = (map_pos.x - data->player.pos.x + (1 - step.x) / 2) / ray_dir.x; //(mapX - player.pos.x + (1 - stepX) / 2) / rayDirX;
-		else
-			perp_wall_dist = (map_pos.y - data->player.pos.y + (1 - step.y) / 2) / ray_dir.y; //(mapY - player.pos.y + (1 - stepY) / 2) / rayDirY;
-
-		if (perp_wall_dist < 1)
-			perp_wall_dist = 1.0;
-		int lineHeight = (int)(IMAGE_HIEGHT / perp_wall_dist);
-		long long drawStart = -lineHeight / 2 + IMAGE_HIEGHT / 2;
-		long long drawEnd = lineHeight / 2 + IMAGE_HIEGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		else if (drawStart > IMAGE_HIEGHT)
-			drawStart = IMAGE_HIEGHT - 1;
-		if (drawEnd < 0)
-			drawEnd = 0;
-		else if (drawEnd > IMAGE_HIEGHT)
-			drawEnd = IMAGE_HIEGHT - 1;
-
-		// Draw ceilinz
-		int y = 0;
-		while (y < drawStart)
-			my_mlx_pixel_put(&data->img, x, y++, 0x00ff00);
-		// Draw wall
-		y = drawStart;
-		while (y < drawEnd)
-			my_mlx_pixel_put(&data->img, x, y++, 0xffffff);
-		// Draw floor
-		y = drawEnd;
-		while (y < IMAGE_HIEGHT)
-			my_mlx_pixel_put(&data->img, x, y++, 0xff0000);
+		init_ray(data, &ray, x);
+		calc_step(&ray, &data->player);
+		perform_dda(data, &ray);
+		calc_wall_dist(&ray, &data->player);
+		draw_wall_slice(data, &ray, x);
 		x++;
 	}
 }

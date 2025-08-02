@@ -1,7 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I/path/to/minilibx
-
+CFLAGS = -Wall -Wextra -Werror -Iincludes/mlx
 
 MFLAGS = -Lincludes/mlx -lmlx -lXext -lX11 -lm -lbsd
 
@@ -38,3 +37,7 @@ fclean: clean
 	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
+
+run: maps/map.cub
+	dos2unix maps/map.cub
+	./cub3D maps/map.cub

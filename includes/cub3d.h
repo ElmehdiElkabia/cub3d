@@ -99,6 +99,18 @@ typedef struct s_game
 	int in_map;
 } t_game;
 
+typedef struct s_ray
+{
+	t_vector	dir;
+	t_vector	map;
+	t_vector	delta;
+	t_vector	side;
+	t_vector	step;
+	double		dist;
+	int			hit_side;
+}	t_ray;
+
+
 void *parser_file(char *file, t_game *game);
 void parse_texture(char *line, t_game *game, int id);
 void parse_colors(char *line, t_game *game, int id);
@@ -125,6 +137,11 @@ void drawing_map(t_game *data);
 void draw_fov(t_game *game);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int update_player(int keycode, t_game *game);
+
+void	calc_wall_dist(t_ray *r, t_player *p);
+void	draw_wall_slice(t_game *d, t_ray *r, int x);
+void draw_vertical_line(t_game *data, int x, int y_start, int y_end, int color);
+
 
 void flood_fill(char **map, int x, int y);
 void find_player_position(char **map, int *px, int *py);
