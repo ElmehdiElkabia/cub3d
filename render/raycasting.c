@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/01 03:40:46 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:35:30 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,11 @@ void raycasting(t_game *data)
 		else
 			perp_wall_dist = (map_pos.y - data->player.pos.y + (1 - step.y) / 2) / ray_dir.y; //(mapY - player.pos.y + (1 - stepY) / 2) / rayDirY;
 
+		if (perp_wall_dist < 1)
+			perp_wall_dist = 1.0;
 		int lineHeight = (int)(IMAGE_HIEGHT / perp_wall_dist);
-		int drawStart = -lineHeight / 2 + IMAGE_HIEGHT / 2;
-		int drawEnd = lineHeight / 2 + IMAGE_HIEGHT / 2;
+		long long drawStart = -lineHeight / 2 + IMAGE_HIEGHT / 2;
+		long long drawEnd = lineHeight / 2 + IMAGE_HIEGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		else if (drawStart > IMAGE_HIEGHT)
@@ -88,12 +90,16 @@ void raycasting(t_game *data)
 			drawEnd = 0;
 		else if (drawEnd > IMAGE_HIEGHT)
 			drawEnd = IMAGE_HIEGHT - 1;
+
+		// Draw ceilinz
 		int y = 0;
 		while (y < drawStart)
 			my_mlx_pixel_put(&data->img, x, y++, 0x00ff00);
+		// Draw wall
 		y = drawStart;
 		while (y < drawEnd)
-			my_mlx_pixel_put(&data->img, x, y++, 0x0000ff);
+			my_mlx_pixel_put(&data->img, x, y++, 0xffffff);
+		// Draw floor
 		y = drawEnd;
 		while (y < IMAGE_HIEGHT)
 			my_mlx_pixel_put(&data->img, x, y++, 0xff0000);

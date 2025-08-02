@@ -19,8 +19,8 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	y_inc = dy / steps;
 	while (steps > 0)
 	{
-		int map_y = (int)y / TILE_SIZE;
-		int map_x = (int)x / TILE_SIZE;
+		int map_y = (int)y / MINI_MAP;
+		int map_x = (int)x / MINI_MAP;
 		if (map_y >= 0 && map_y < game->map.height &&
 			map_x >= 0 && map_x < (int)ft_strlen(game->map.grid[map_y]) &&
 			game->map.grid[map_y][map_x] != '1')
@@ -38,8 +38,8 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 // void	draw_fov(t_game *game)
 // {
 // 	double scale = 150;
-// 	int px = game->player.pos.x * TILE_SIZE;
-// 	int py = game->player.pos.y * TILE_SIZE;
+// 	int px = game->player.pos.x * MINI_MAP;
+// 	int py = game->player.pos.y * MINI_MAP;
 // 	int dx;
 // 	int dy;
 
@@ -51,12 +51,11 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 void draw_fov(t_game *game)
 {
 	double scale = 150;
-	int px = game->player.pos.x * TILE_SIZE;
-	int py = game->player.pos.y * TILE_SIZE;
-	double fov_angle = 60.0 * M_PI / 180.0; // 60 degrees FOV in radians
+	int px = game->player.pos.x * MINI_MAP;
+	int py = game->player.pos.y * MINI_MAP;
 	double player_angle = atan2(game->player.dir.y, game->player.dir.x);
-	double start_angle = player_angle - fov_angle / 2.0;
-	double angle_step = fov_angle / 20.0; // 20 rays across FOV
+	double start_angle = player_angle - FOV_ANGLE / 2.0;
+	double angle_step = FOV_ANGLE / 20.0; // 20 rays across FOV
 	int i;
 
 	// Draw multiple rays across the FOV

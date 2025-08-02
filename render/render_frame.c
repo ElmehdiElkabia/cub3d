@@ -17,6 +17,7 @@ int render_frame(t_game *data)
     // clear image buffer
     ft_bzero(data->img.addr, IMAGE_HIEGHT * IMAGE_WIDTH * (data->img.bpp / 8));
 
+	// load_textures(data);
     // Draw 3D view
 	raycasting(data);
     // Optionally: draw minimap on top (debug)

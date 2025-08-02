@@ -4,6 +4,8 @@
 		"string_view": "c",
 		"string": "c",
 		"array": "c",
-		"span": "c"
-	}
+		"span": "c",
+		"cmath": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

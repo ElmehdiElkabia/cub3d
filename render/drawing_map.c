@@ -20,7 +20,7 @@ void my_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 	if (x < 0 || x >= IMAGE_WIDTH || y < 0 || y >= IMAGE_HIEGHT)
 		return;
-	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	dst = img->addr + (y * img->line_len + x * (img->bpp / MINI_MAP));
 	*(unsigned int *)dst = color;
 }
 
@@ -31,13 +31,13 @@ void draw_square(t_game *game, int grid_y, int grid_x, int color)
 	int start_x;
 	int start_y;
 
-	start_x = grid_x * TILE_SIZE;
-	start_y = grid_y * TILE_SIZE;
+	start_x = grid_x * MINI_MAP;
+	start_y = grid_y * MINI_MAP;
 	py = 0;
-	while (py < TILE_SIZE)
+	while (py < MINI_MAP)
 	{
 		px = 0;
-		while (px < TILE_SIZE)
+		while (px < MINI_MAP)
 		{
 			my_mlx_pixel_put(&game->img, start_x + px, start_y + py, color);
 			px++;
@@ -55,8 +55,8 @@ void draw_player(t_game *data)
 	int dx;
 
 	size = 5;
-	y = data->player.pos.y * TILE_SIZE - size / 2;
-	x = data->player.pos.x * TILE_SIZE - size / 2;
+	y = data->player.pos.y * MINI_MAP - size / 2;
+	x = data->player.pos.x * MINI_MAP - size / 2;
 	dy = 0;
 	while (dy < size)
 	{
@@ -79,27 +79,27 @@ void draw_grid_lines(t_game *data)
 
 	// Draw vertical lines
 	x = 0;
-	while (x <= data->map.width * TILE_SIZE)
+	while (x <= data->map.width * MINI_MAP)
 	{
 		py = 0;
-		while (py < data->map.height * TILE_SIZE)
+		while (py < data->map.height * MINI_MAP)
 		{
 			my_mlx_pixel_put(&data->img, x, py, 0x000000); // black grid lines
 			py++;
 		}
-		x += TILE_SIZE;
+		x += MINI_MAP;
 	}
 	// Draw horizontal lines
 	y = 0;
-	while (y <= data->map.height * TILE_SIZE)
+	while (y <= data->map.height * MINI_MAP)
 	{
 		px = 0;
-		while (px < data->map.width * TILE_SIZE)
+		while (px < data->map.width * MINI_MAP)
 		{
 			my_mlx_pixel_put(&data->img, px, y, 0x000000); // black grid lines
 			px++;
 		}
-		y += TILE_SIZE;
+		y += MINI_MAP;
 	}
 }
 
