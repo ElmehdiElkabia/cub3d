@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_mapping.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:34:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/02 19:34:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:11:54 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void texture_mapping(t_game *data, t_ray *r, int x)
 	if ((r->hit_side == 0 && r->dir.x > 0) || (r->hit_side == 1 && r->dir.y < 0))
 		tex_x = texture->width - tex_x - 1;
 
-	if (r->dist < 0.001)
-		r->dist = 0.001;
+	// if (r->dist < 0.001)
+	// 	r->dist = 0.001;
+	// printf("dir %f\n", r->dist);
 	// 4. Compute vertical slice dimensions
 	int line_height = (int)(IMAGE_HEIGHT / r->dist);
 	int draw_start = -line_height / 2 + IMAGE_HEIGHT / 2;

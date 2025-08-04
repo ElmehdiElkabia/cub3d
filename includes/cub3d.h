@@ -159,4 +159,6 @@ void texture_mapping(t_game *data, t_ray *r, int x);
 void flood_fill(char **map, int x, int y);
 void find_player_position(char **map, int *px, int *py);
 char **duplicate_map(char **original);
+
+void draw_color(t_game *game, t_ray *ray, int x);
 #endif

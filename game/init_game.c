@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/01 05:33:51 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:05:35 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_player(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0;
-	player->move_speed = 0.05;
+	player->move_speed = 0.07;
 	player->rot_speed = 0.05;
 }
 

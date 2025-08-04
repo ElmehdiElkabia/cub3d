@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/02 11:35:30 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:12:54 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ void raycasting(t_game *data)
 		calc_step(&ray, &data->player);
 		perform_dda(data, &ray);
 		calc_wall_dist(&ray, &data->player);
-		// draw_wall_slice(data, &ray, x);
 		texture_mapping(data, &ray, x);
+		draw_color(data, &ray, x);
+		// draw_wall_slice(data, &ray, x);
 		x++;
 	}
 }
