@@ -32,6 +32,8 @@
 #define SOUTH 1
 #define EAST 2
 #define WEST 3
+
+
 typedef struct s_texture
 {
 	char *path;
