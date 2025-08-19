@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_program.c                                    :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 11:42:15 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:22:45 by eelkabia         ###   ########.fr       */
+/*   Created: 2025/08/19 12:23:09 by eelkabia          #+#    #+#             */
+/*   Updated: 2025/08/19 12:23:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	close_window(t_game *game)
+void	destroy_img(t_game *data)
 {
-	cleanup_and_exit(game, 0);
-	return (0);
-}
-
-void	handle_exit(int keycode, t_game *game)
-{
-	if (keycode == 65307)
+	if (data->img.img)
 	{
-		cleanup_and_exit(game, 0);
+		mlx_destroy_image(data->mlx.mlx_ptr, data->img.img);
+		data->img.img = NULL;
+		data->img.addr = NULL;
 	}
 }
 
-
-void	cleanup_and_exit(t_game *data, int exit_code)
+void	destroy_mlx(t_game *data)
 {
-	free_texture_data(data);
-	free_map_data(data);
-	destroy_img(data);
-	destroy_mlx(data);
-	exit(exit_code);
+	if (data->mlx.win_ptr)
+	{
+		mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.win_ptr);
+		data->mlx.win_ptr = NULL;
+	}
+	if (data->mlx.mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx.mlx_ptr);
+		free(data->mlx.mlx_ptr);
+		data->mlx.mlx_ptr = NULL;
+	}
 }

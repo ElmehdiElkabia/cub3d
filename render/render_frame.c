@@ -3,27 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 14:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/27 14:49:37 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/19 12:04:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int render_frame(t_game *data)
+int	render_frame(t_game *data)
 {
-    // clear image buffer
-    ft_bzero(data->img.addr, IMAGE_HEIGHT * IMAGE_WIDTH * (data->img.bpp / 8));
-
+	if (!data->img.img)
+	{
+		data->img.img = mlx_new_image(data->mlx.mlx_ptr, IMAGE_WIDTH,
+				IMAGE_HEIGHT);
+		if (!data->img.img)
+			return (1);
+		data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+				&data->img.line_len, &data->img.endian);
+	}
+	ft_bzero(data->img.addr, IMAGE_HEIGHT * IMAGE_WIDTH * (data->img.bpp / 8));
 	load_textures(data);
-    // Draw 3D view
 	raycasting(data);
-    // Optionally: draw minimap on top (debug)
-	drawing_map(data);
+	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
+		0, 0);
+	return (0);
+}
 
-    // put the image to the window
-    mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img, 0, 0);
-    return (0);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= IMAGE_WIDTH || y < 0 || y >= IMAGE_HEIGHT)
+		return ;
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
 }

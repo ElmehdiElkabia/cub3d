@@ -6,85 +6,94 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/06 12:40:33 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 10:51:20 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void init_ray(t_game *d, t_ray *r, int x)
+void	calculate_step_side(t_game *data, t_ray *ray)
 {
-	double camera_x;
-
-	camera_x = 2 * x / (double)IMAGE_WIDTH - 1;
-	r->dir.x = d->player.dir.x + d->player.plane.x * camera_x;
-	r->dir.y = d->player.dir.y + d->player.plane.y * camera_x;
-	r->map.x = (int)d->player.pos.x;
-	r->map.y = (int)d->player.pos.y;
-	r->delta.x = fabs(1 / r->dir.x);
-	r->delta.y = fabs(1 / r->dir.y);
-}
-
-void calc_step(t_ray *r, t_player *p)
-{
-	if (r->dir.x < 0)
+	if (ray->dir.x < 0)
 	{
-		r->step.x = -1;
-		r->side.x = (p->pos.x - r->map.x) * r->delta.x;
+		ray->step.x = -1;
+		ray->side_dist.x = (data->player.pos.x - ray->map.x)
+			* ray->delta_dist.x;
 	}
 	else
 	{
-		r->step.x = 1;
-		r->side.x = (r->map.x + 1.0 - p->pos.x) * r->delta.x;
+		ray->step.x = 1;
+		ray->side_dist.x = (ray->map.x + 1.0 - data->player.pos.x)
+			* ray->delta_dist.x;
 	}
-	if (r->dir.y < 0)
+	if (ray->dir.y < 0)
 	{
-		r->step.y = -1;
-		r->side.y = (p->pos.y - r->map.y) * r->delta.y;
+		ray->step.y = -1;
+		ray->side_dist.y = (data->player.pos.y - ray->map.y)
+			* ray->delta_dist.y;
 	}
 	else
 	{
-		r->step.y = 1;
-		r->side.y = (r->map.y + 1.0 - p->pos.y) * r->delta.y;
+		ray->step.y = 1;
+		ray->side_dist.y = (ray->map.y + 1.0 - data->player.pos.y)
+			* ray->delta_dist.y;
 	}
 }
 
-void perform_dda(t_game *d, t_ray *r)
+void	init_ray(t_game *data, t_ray *ray, int x)
+{
+	double	camera;
+
+	camera = 2 * x / (double)IMAGE_WIDTH - 1;
+	ray->dir.x = data->player.dir.x + data->player.plane.x * camera;
+	ray->dir.y = data->player.dir.y + data->player.plane.y * camera;
+	ray->map.x = (int)data->player.pos.x;
+	ray->map.y = (int)data->player.pos.y;
+	if (ray->dir.x == 0)
+		ray->delta_dist.x = 1e30;
+	else
+		ray->delta_dist.x = fabs(1 / ray->dir.x);
+	if (ray->dir.y == 0)
+		ray->delta_dist.y = 1e30;
+	else
+		ray->delta_dist.y = fabs(1 / ray->dir.y);
+}
+
+void	perform_dda(t_game *data, t_ray *ray)
 {
 	while (1)
 	{
-		if (r->side.x < r->side.y)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			r->side.x += r->delta.x;
-			r->map.x += r->step.x;
-			r->hit_side = 0;
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step.x;
+			ray->side = 0;
 		}
 		else
 		{
-			r->side.y += r->delta.y;
-			r->map.y += r->step.y;
-			r->hit_side = 1;
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step.y;
+			ray->side = 1;
 		}
-		if (d->map.grid[(int)r->map.y][(int)r->map.x] == '1')
-			break;
+		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1')
+			break ;
 	}
 }
 
-void raycasting(t_game *data)
+void	raycasting(t_game *data)
 {
-	t_ray ray;
-	int x;
+	t_ray	ray;
+	int		x;
 
 	x = 0;
 	while (x < IMAGE_WIDTH)
 	{
 		init_ray(data, &ray, x);
-		calc_step(&ray, &data->player);
+		calculate_step_side(data, &ray);
 		perform_dda(data, &ray);
-		calc_wall_dist(&ray, &data->player);
+		calculate_distance(&ray);
 		texture_mapping(data, &ray, x);
 		draw_color(data, &ray, x);
-		// draw_wall_slice(data, &ray, x);
 		x++;
 	}
 }

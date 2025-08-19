@@ -6,42 +6,56 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:01:21 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/04 17:57:04 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:35:31 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int rgb_to_int(int r, int g, int b)
+int	rgb_to_int(int r, int g, int b)
 {
-	return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+	return (((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF));
 }
 
-void draw_color(t_game *game, t_ray *ray, int x)
+static void	get_colors(t_game *game, int *floor_color, int *ceiling_color)
 {
-	t_color floor;
-	t_color ceiling;
+	t_color	floor;
+	t_color	ceiling;
 
 	floor = game->map.floor;
 	ceiling = game->map.ceiling;
-	int floor_color = rgb_to_int(floor.r, floor.g, floor.b);
-	int ceiling_color = rgb_to_int(ceiling.r, ceiling.g, ceiling.b);
+	*floor_color = rgb_to_int(floor.r, floor.g, floor.b);
+	*ceiling_color = rgb_to_int(ceiling.r, ceiling.g, ceiling.b);
+}
 
-	if (ray->dist < 0.0001)
-		ray->dist = 0.0001;
+static void	draw_ceiling(t_game *game, int x, int draw_start, int ceiling_color)
+{
+	int	y;
 
-	int line_height = (int)(IMAGE_HEIGHT / ray->dist);
-	int draw_start = -line_height / 2 + IMAGE_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	int draw_end = line_height / 2 + IMAGE_HEIGHT / 2;
-	if (draw_end >= IMAGE_HEIGHT)
-		draw_end = IMAGE_HEIGHT - 1;
-
-	int y = 0;
-	while (y < draw_start -1)
+	y = 0;
+	while (y < draw_start - 1)
 		my_mlx_pixel_put(&game->img, x, y++, ceiling_color);
+}
+
+static void	draw_floor(t_game *game, int x, int draw_end, int floor_color)
+{
+	int	y;
+
 	y = draw_end;
-	while (y < IMAGE_HEIGHT -1)
+	while (y < IMAGE_HEIGHT - 1)
 		my_mlx_pixel_put(&game->img, x, y++, floor_color);
+}
+
+void	draw_color(t_game *game, t_ray *ray, int x)
+{
+	int	floor_color;
+	int	ceiling_color;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+
+	get_colors(game, &floor_color, &ceiling_color);
+	calculate_wall_dimensions(ray, &line_height, &draw_start, &draw_end);
+	draw_ceiling(game, x, draw_start, ceiling_color);
+	draw_floor(game, x, draw_end, floor_color);
 }

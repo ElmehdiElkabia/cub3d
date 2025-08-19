@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:09:07 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:18:36 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:33:30 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ void	check_closure(t_game *game)
 	y = 0;
 	copy = duplicate_map(game->map.grid);
 	if (!copy)
+	{
 		print_error("Failed to duplicate map copy");
+	}
 	find_player_position(game->map.grid, &x, &y);
 	copy[y][x] = '0';
 	flood_fill(copy, x, y);

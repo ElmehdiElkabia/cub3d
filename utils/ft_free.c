@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:17:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 12:18:11 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:22:20 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,55 @@ void	ft_free_split(char **arr)
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
+}
+
+
+void	free_map_data(t_game *data)
+{
+	int	i;
+
+	if (data->map.grid)
+	{
+		i = 0;
+		while (i < data->map.height && data->map.grid[i])
+		{
+			free(data->map.grid[i]);
+			i++;
+		}
+		free(data->map.grid);
+		data->map.grid = NULL;
+	}
+	if (data->map_lines)
+	{
+		i = 0;
+		while (i < data->map_line_count && data->map_lines[i])
+		{
+			free(data->map_lines[i]);
+			i++;
+		}
+		free(data->map_lines);
+		data->map_lines = NULL;
+	}
+}
+
+void	free_texture_data(t_game *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (data->texture[i].path)
+		{
+			free(data->texture[i].path);
+			data->texture[i].path = NULL;
+		}
+		if (data->texture[i].img)
+		{
+			mlx_destroy_image(data->mlx.mlx_ptr, data->texture[i].img);
+			data->texture[i].img = NULL;
+			data->texture[i].addr = NULL;
+		}
+		i++;
+	}
 }
