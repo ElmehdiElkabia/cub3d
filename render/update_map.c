@@ -65,9 +65,9 @@ int update_player(int keycode, t_game *game)
 	if (game->map.grid[(int)new_y][map_x] != '1')
 		game->player.pos.y = new_y;
 
-	mlx_clear_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
-	drawing_map(game);
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->img.img, 0, 0);
+	// mlx_clear_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
+	// drawing_map(game);
+	// mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->img.img, 0, 0);
 
 	return (0);
 }

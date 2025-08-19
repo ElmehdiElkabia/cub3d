@@ -15,12 +15,12 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	if (steps == 0)
 		return;
 
-	x_inc = dx / steps;
-	y_inc = dy / steps;
+	x_inc = game->player.pos.x;
+	y_inc = game->player.pos.y;
 	while (steps > 0)
 	{
-		int map_y = (int)y / MINI_MAP;
-		int map_x = (int)x / MINI_MAP;
+		int map_y = (game->player.pos.y - (int)game->player.pos.y);
+		int map_x = (game->player.pos.x - (int)game->player.pos.x);
 		if (map_y >= 0 && map_y < game->map.height &&
 			map_x >= 0 && map_x < (int)ft_strlen(game->map.grid[map_y]) &&
 			game->map.grid[map_y][map_x] != '1')
@@ -50,7 +50,7 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
 void draw_fov(t_game *game)
 {
-	double scale = 150;
+	double scale = 50;
 	// int px = game->player.pos.x * MINI_MAP;
 	// int py = game->player.pos.y * MINI_MAP;
 	double center_tile_x = MINI_VIEW_W / 2;
