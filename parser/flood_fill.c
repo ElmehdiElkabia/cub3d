@@ -6,34 +6,45 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:16:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:18:47 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:49:35 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+static void	replace_player_with_zero(char *line)
+{
+	int	j;
+
+	j = 0;
+	while (line[j])
+	{
+		if (line[j] == 'N' || line[j] == 'S' || line[j] == 'E'
+			|| line[j] == 'W')
+			line[j] = '0';
+		j++;
+	}
+}
+
 char	**duplicate_map(char **original)
 {
 	int		i;
-	int		j;
+	int		map_height;
 	char	**copy;
 
-	i = ft_strlen(*original);
-	j = 0;
-	copy = malloc(sizeof(char *) * (i + 1));
+	map_height = 0;
+	while (original[map_height])
+		map_height++;
+	copy = malloc(sizeof(char *) * (map_height + 1));
 	if (!copy)
 		print_error("Failed to allocate map copy");
 	i = 0;
 	while (original[i])
 	{
 		copy[i] = ft_strdup(original[i]);
-		while (copy[i][j])
-		{
-			if (copy[i][j] == 'N' || copy[i][j] == 'S' || copy[i][j] == 'E'
-				|| copy[i][j] == 'W')
-				copy[i][j] = '0';
-			j++;
-		}
+		if (!copy[i])
+			print_error("Failed to duplicate map line");
+		replace_player_with_zero(copy[i]);
 		i++;
 	}
 	copy[i] = NULL;

@@ -6,23 +6,20 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 14:54:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:28:53 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:47:46 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	load_textures(t_game *game)
+static void	load_single_texture(t_game *game, int i)
 {
-	int	i;
-
-	i = 0;
-	while (i < 4)
+	if (!game->texture[i].path)
 	{
-		if (!game->texture[i].path)
-		{
-			cleanup_and_exit(game, 1);
-		}
+		cleanup_and_exit(game, 1);
+	}
+	if (!game->texture[i].img)
+	{
 		game->texture[i].img = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
 				game->texture[i].path, &game->texture[i].width,
 				&game->texture[i].height);
@@ -39,6 +36,17 @@ void	load_textures(t_game *game)
 			print_error("Failed to get texture data address");
 			cleanup_and_exit(game, 1);
 		}
+	}
+}
+
+void	load_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		load_single_texture(game, i);
 		i++;
 	}
 }
