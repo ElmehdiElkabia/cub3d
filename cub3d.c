@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 		// load_textures(&data); // hady rah ghadama heta newaslo logic dial recasting
 		// 4. Init MiniLibX (mlx, window, image buffer)
 		init_minilibx(&data);
+		load_textures(&data);
 		// 5. Start rendering loop (mlx_loop_hook / mlx_loop)
 		mlx_hook(data.mlx.win_ptr, 2, 1L << 0, update_player, &data);
 		// 6. Render the first frame
