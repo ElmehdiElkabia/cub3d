@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:21:53 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:53:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,6 @@ typedef struct s_mlx
 	void		*win_ptr;
 }				t_mlx;
 
-typedef struct s_game
-{
-	t_mlx		mlx;
-	t_img		img;
-	t_map		map;
-	t_player	player;
-	t_texture	texture[4];
-	char		**map_lines;
-	int			map_line_count;
-	int			in_map;
-}				t_game;
-
 typedef struct s_ray
 {
 	t_vector	dir;
@@ -144,12 +132,37 @@ typedef struct s_draw_vars
 	int			tex_y;
 }				t_draw_vars;
 
+typedef struct s_keys
+{
+	int			w;
+	int			s;
+	int			a;
+	int			d;
+	int			left;
+	int			right;
+	int			esc;
+}				t_keys;
+
+typedef struct s_game
+{
+	t_mlx		mlx;
+	t_img		img;
+	t_map		map;
+	t_player	player;
+	t_texture	texture[4];
+	char		**map_lines;
+	int			map_line_count;
+	int			in_map;
+	t_keys		keys;
+}				t_game;
+
 void			*parser_file(char *file, t_game *game);
 void			parse_texture(char *line, t_game *game, int id);
 void			parse_colors(char *line, t_game *game, int id);
 void			parse_map(char *line, t_game *game);
 int				is_map_line(char *line);
 int				print_error(char *str);
+void			error_and_cleanup(char *str, t_game *game);
 void			ft_free_split(char **arr);
 void			check_map(t_game *game);
 void			check_characters(t_game *game);
@@ -174,8 +187,11 @@ void			set_player_direction(t_game *game);
 void			update_new_pos(int keycode, double *new_x, double *new_y,
 					t_game *game);
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int				update_player(int keycode, t_game *game);
-void			handle_exit(int keycode, t_game *game);
+int				game_loop(t_game *game);
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_game *game);
+void			handle_movement(double *new_x, double *new_y, t_game *game);
+void			handle_exit(t_game *game);
 int				close_window(t_game *game);
 
 void			calculate_distance(t_ray *ray);
@@ -190,4 +206,6 @@ void			find_player_position(char **map, int *px, int *py);
 char			**duplicate_map(char **original);
 
 void			draw_color(t_game *game, t_ray *ray, int x);
+
+void			handle_rotation(t_game *game);
 #endif

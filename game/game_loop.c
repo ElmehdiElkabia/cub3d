@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:46:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 11:47:13 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:53:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ static void	update_position(t_game *game, double new_x, double new_y)
 		game->player.pos.y = new_y;
 }
 
-int	update_player(int keycode, t_game *game)
+int	game_loop(t_game *game)
 {
 	double	new_x;
 	double	new_y;
 
-	handle_exit(keycode, game);
+	handle_exit(game);
 	new_x = game->player.pos.x;
 	new_y = game->player.pos.y;
-	update_new_pos(keycode, &new_x, &new_y, game);
+	handle_movement(&new_x, &new_y, game);
+	handle_rotation(game);
 	update_position(game, new_x, new_y);
+	render_frame(game);
 	return (0);
 }

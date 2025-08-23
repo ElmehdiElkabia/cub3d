@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:42:15 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:49:48 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:30:43 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	close_window(t_game *game)
 	return (0);
 }
 
-void	handle_exit(int keycode, t_game *game)
+void	handle_exit(t_game *game)
 {
-	if (keycode == 65307)
+	if (game->keys.esc)
 	{
 		cleanup_and_exit(game, 0);
 	}

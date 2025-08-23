@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:10:31 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:55:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	get_color(char **colors, t_game *game, int id)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		ft_free_split(colors);
-		print_error("Color value out of range");
+		error_and_cleanup("Color value out of range", game);
 	}
 	if (id == 0)
 	{
@@ -95,17 +95,17 @@ void	parse_colors(char *line, t_game *game, int id)
 
 	i = skip_identifier(line, id);
 	if (i == -1)
-		print_error("Invalid color line");
+		error_and_cleanup("Invalid color line", game);
 	colors = ft_split(line + i, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
 	{
 		ft_free_split(colors);
-		print_error("Invalid color format (must be R,G,B)");
+		error_and_cleanup("Invalid color format (must be R,G,B)", game);
 	}
 	if (check_color(colors))
 	{
 		ft_free_split(colors);
-		print_error("Invalid color (must be number)");
+		error_and_cleanup("Invalid color (must be number)", game);
 	}
 	get_color(colors, game, id);
 	ft_free_split(colors);
