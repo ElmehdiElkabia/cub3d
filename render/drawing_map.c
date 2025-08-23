@@ -74,7 +74,6 @@ void draw_player_minimap(t_game *game)
     }
 }
 
-
 void drawing_map(t_game *game)
 {
     int start_x = (int)game->player.pos.x - MINI_VIEW_W / 2;
@@ -100,7 +99,5 @@ void drawing_map(t_game *game)
                 draw_square_minimap(game, y, x, 0xCCCCCC);
         }
     }
-
     draw_player_minimap(game);
-	// draw_fov(game);
 }

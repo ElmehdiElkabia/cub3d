@@ -166,4 +166,6 @@ void find_player_position(char **map, int *px, int *py);
 char **duplicate_map(char **original);
 
 void draw_color(t_game *game, t_ray *ray, int x);
+int		mouse(int x, int y, t_game *game);
+
 #endif
