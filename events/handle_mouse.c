@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:21:01 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 12:39:38 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:54:20 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	handle_mouse(int x, int y, t_game *game)
 	(void)y;
 	center_x = IMAGE_WIDTH / 2;
 	dx = x - center_x;
-	rot = dx * game->player.rot_speed * 0.05;
+	rot = dx * game->player.rot_speed * 0.02;
 	rotate_vector(&game->player.dir, rot);
 	rotate_vector(&game->player.plane, rot);
 	return (0);

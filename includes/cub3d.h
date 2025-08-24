@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 12:24:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:46:32 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@
 # define IMAGE_WIDTH 1280
 # define IMAGE_HEIGHT 720
 # define TILE_SIZE 64
-# define MINI_MAP 8
+#define MINI_VIEW_W 10
+#define MINI_VIEW_H 10
+#define MINI_TILE 10
+#define MINI_MAP 8
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE 1.0471975511965976
 # define NORTH 0
@@ -184,8 +187,6 @@ int				render_frame(t_game *data);
 void			raycasting(t_game *data);
 void			set_player_direction(t_game *game);
 
-void			update_new_pos(int keycode, double *new_x, double *new_y,
-					t_game *game);
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int				game_loop(t_game *game);
 int				key_press(int keycode, t_game *game);
@@ -210,4 +211,6 @@ void			rotate_vector(t_vector *vec, double angle);
 
 void			handle_rotation(t_game *game);
 int				handle_mouse(int x, int y, t_game *game);
+
+void 			draw_mini_map(t_game *game);
 #endif

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 14:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/24 12:29:51 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:45:56 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	render_frame(t_game *data)
 	}
 	ft_bzero(data->img.addr, IMAGE_HEIGHT * IMAGE_WIDTH * (data->img.bpp / 8));
 	raycasting(data);
+	draw_mini_map(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
 		0, 0);
 	mlx_mouse_move(data->mlx.mlx_ptr, data->mlx.win_ptr, IMAGE_WIDTH / 2,
