@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/23 15:53:15 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:24:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,8 @@ void			find_player_position(char **map, int *px, int *py);
 char			**duplicate_map(char **original);
 
 void			draw_color(t_game *game, t_ray *ray, int x);
+void			rotate_vector(t_vector *vec, double angle);
 
 void			handle_rotation(t_game *game);
+int				handle_mouse(int x, int y, t_game *game);
 #endif

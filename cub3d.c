@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/23 15:53:15 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:29:35 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		load_textures(&data);
 		mlx_hook(data.mlx.win_ptr, 2, 1L << 0, key_press, &data);
 		mlx_hook(data.mlx.win_ptr, 3, 1L << 1, key_release, &data);
+		mlx_hook(data.mlx.win_ptr, 6, 1L << 6, handle_mouse, &data);
 		mlx_hook(data.mlx.win_ptr, 17, 1L << 17, close_window, &data);
 		mlx_loop_hook(data.mlx.mlx_ptr, game_loop, &data);
 		mlx_loop(data.mlx.mlx_ptr);

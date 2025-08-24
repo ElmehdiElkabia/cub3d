@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:41:23 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/23 15:29:22 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 12:22:27 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	handle_movement(double *new_x, double *new_y, t_game *game)
 	}
 }
 
-static void	rotate_vector(t_vector *vec, double angle)
+void	rotate_vector(t_vector *vec, double angle)
 {
 	double	old_x;
 
