@@ -2,16 +2,12 @@
 
 int mouse(int x, int y, t_game *game)
 {
-    static int last_x = -1;
+    int center_x = IMAGE_WIDTH / 2;
     int dx;
     (void)y;
-    if (last_x == -1)
-        last_x = x;
+    dx = x - center_x;
 
-    dx = x - last_x;
-    last_x = x;
-
-    double rot = dx * game->player.rot_speed * 0.04;
+    double rot = dx * game->player.rot_speed * 0.02;
 
     // rotate right if dx positive, left if negative
     double old_dir_x = game->player.dir.x;

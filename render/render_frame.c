@@ -25,5 +25,6 @@ int render_frame(t_game *data)
 
     // put the image to the window
     mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img, 0, 0);
+	mlx_mouse_move(data->mlx.mlx_ptr, data->mlx.win_ptr, IMAGE_WIDTH/ 2, IMAGE_HEIGHT / 2);
     return (0);
 }
