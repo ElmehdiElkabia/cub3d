@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:44:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 12:47:51 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 13:08:40 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void draw_square_minimap(t_game *game, int tile_y, int tile_x, int color)
         int px = 0;
         while (px < MINI_TILE)
         {
-            my_mlx_pixel_put(&game->img, start_x + px, start_y + py, color);
+            my_mlx_pixel_put_map(&game->img, start_x + px, start_y + py, color);
             px++;
         }
         py++;
