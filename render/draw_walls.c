@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:58:26 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:15:02 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 13:21:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	calculate_distance(t_ray *ray)
 void	calculate_wall_dimensions(t_ray *r, int *line_height, int *draw_start,
 		int *draw_end)
 {
+	if (r->perp_wall_dist < 0.000001)
+		r->perp_wall_dist = 0.000001;
 	*line_height = (int)(IMAGE_HEIGHT / r->perp_wall_dist);
 	*draw_start = -*line_height / 2 + IMAGE_HEIGHT / 2;
 	if (*draw_start < 0)
