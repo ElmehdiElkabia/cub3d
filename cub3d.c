@@ -12,6 +12,37 @@
 
 #include "includes/cub3d.h"
 
+void    load_player_anim(t_game *game)
+{
+    char *paths[4] = {
+        "texture/player/anim_0.xpm",
+        "texture/player/anim_1.xpm",
+        "texture/player/anim_2.xpm",
+        "texture/player/anim_3.xpm"
+    };
+	int i = 0;
+    while (i < 4)
+    {
+        game->player.anim[i].img = mlx_xpm_file_to_image(
+            game->mlx.mlx_ptr,
+            paths[i],
+            &game->player.anim[i].width,
+            &game->player.anim[i].height
+        );
+        if (!game->player.anim[i].img)
+            printf("Failed to load %s\n", paths[i]);
+        game->player.anim[i].addr = mlx_get_data_addr(
+            game->player.anim[i].img,
+            &game->player.anim[i].bpp,
+            &game->player.anim[i].line_len,
+            &game->player.anim[i].endian
+        );
+		i++;
+    }
+    game->player.frame = 0;
+    game->player.frame_counter = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	data;
@@ -25,6 +56,7 @@ int	main(int argc, char **argv)
 		set_player_direction(&data);
 		init_minilibx(&data);
 		load_textures(&data);
+		load_player_anim(&data);
 		mlx_hook(data.mlx.win_ptr, 2, 1L << 0, key_press, &data);
 		mlx_hook(data.mlx.win_ptr, 3, 1L << 1, key_release, &data);
 		mlx_hook(data.mlx.win_ptr, 6, 1L << 6, handle_mouse, &data);
