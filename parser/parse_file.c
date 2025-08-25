@@ -6,13 +6,13 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:10:11 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:04:09 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	is_empty_line(char *line)
+int	is_empty_line(char *line)
 {
 	int	i;
 
@@ -73,46 +73,34 @@ void	detect_type(char *line, t_game *game)
 		printf("unknown line: %s\n", line);
 }
 
-int	get_map_width(t_game *data)
+static void	parse_line(char *line, t_game *game, int *has_content)
 {
-	int	max_width;
-	int	y;
-	int	current_width;
-
-	max_width = 0;
-	y = 0;
-	while (y < data->map.height)
-	{
-		current_width = (int)ft_strlen(data->map.grid[y]);
-		if (current_width > max_width)
-			max_width = current_width;
-		y++;
-	}
-	return (max_width);
+	if (is_empty_line(line))
+		return ;
+	*has_content = 1;
+	detect_type(line, game);
 }
 
 void	*parser_file(char *file, t_game *game)
 {
 	char	*line;
 	int		fd;
+	int		has_content;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
+	has_content = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (is_empty_line(line))
-		{
-			free(line);
-			line = get_next_line(fd);
-			continue ;
-		}
-		detect_type(line, game);
+		parse_line(line, game, &has_content);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (!has_content)
+		print_error("Error: Map file is empty");
 	game->map.grid = game->map_lines;
 	game->map.height = game->map_line_count;
 	game->map.width = get_map_width(game);

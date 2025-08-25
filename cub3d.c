@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/25 10:15:28 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:03:52 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,15 @@ int	main(int argc, char **argv)
 		return (print_error("Usage: ./cub3D <map_file.cub>"));
 	if (!validate_file(argv[1]))
 		return (1);
-	else
-	{
-		init_game(&data);
-		parser_file(argv[1], &data);
-		set_player_direction(&data);
-		init_minilibx(&data);
-		load_textures(&data);
-		mlx_hook(data.mlx.win_ptr, 2, 1L << 0, key_press, &data);
-		mlx_hook(data.mlx.win_ptr, 3, 1L << 1, key_release, &data);
-		mlx_hook(data.mlx.win_ptr, 6, 1L << 6, handle_mouse, &data);
-		mlx_hook(data.mlx.win_ptr, 17, 1L << 17, close_window, &data);
-		mlx_loop_hook(data.mlx.mlx_ptr, game_loop, &data);
-		mlx_loop(data.mlx.mlx_ptr);
-	}
+	init_game(&data);
+	parser_file(argv[1], &data);
+	set_player_direction(&data);
+	init_minilibx(&data);
+	load_textures(&data);
+	mlx_hook(data.mlx.win_ptr, 2, 1L << 0, key_press, &data);
+	mlx_hook(data.mlx.win_ptr, 3, 1L << 1, key_release, &data);
+	mlx_hook(data.mlx.win_ptr, 6, 1L << 6, handle_mouse, &data);
+	mlx_hook(data.mlx.win_ptr, 17, 1L << 17, close_window, &data);
+	mlx_loop_hook(data.mlx.mlx_ptr, game_loop, &data);
+	mlx_loop(data.mlx.mlx_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 13:32:23 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:04:34 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ void			check_characters(t_game *game);
 void			check_player(t_game *game);
 void			check_closure(t_game *game);
 
+int				is_empty_line(char *line);
+
 void			init_game(t_game *data);
 void			init_minilibx(t_game *data);
 void			destroy_img(t_game *data);
@@ -181,7 +183,7 @@ void			free_texture_data(t_game *data);
 void			cleanup_and_exit(t_game *data, int exit_code);
 
 void			print_map(char **grid);
-
+int				get_map_width(t_game *data);
 void			load_textures(t_game *game);
 int				render_frame(t_game *data);
 void			raycasting(t_game *data);

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:18:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:04:21 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,22 @@ void	check_map(t_game *game)
 	check_characters(game);
 	check_player(game);
 	check_closure(game);
+}
+
+int	get_map_width(t_game *data)
+{
+	int	max_width;
+	int	y;
+	int	current_width;
+
+	max_width = 0;
+	y = 0;
+	while (y < data->map.height)
+	{
+		current_width = (int)ft_strlen(data->map.grid[y]);
+		if (current_width > max_width)
+			max_width = current_width;
+		y++;
+	}
+	return (max_width);
 }
