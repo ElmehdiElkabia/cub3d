@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:03:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/13 11:26:41 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ void	parse_texture(char *line, t_game *game, int id)
 	int	path_start;
 
 	if (game->texture[id].path)
-		print_error("Texture defined more than once");
+		error_and_cleanup("Texture defined more than once", game);
 	i = skip_identifier(line, id);
 	if (i == -1)
-		print_error("Invalid texture line");
+		error_and_cleanup("Invalid texture line", game);
 	path_start = i;
 	while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 		i++;
 	game->texture[id].path = ft_substr(line, path_start, i - path_start);
 	if (!game->texture[id].path)
-		print_error("Malloc failed in parse_texture");
+		error_and_cleanup("Malloc failed in parse_texture", game);
 }

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:09:07 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:18:36 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_characters(t_game *game)
 		{
 			c = game->map.grid[y][x];
 			if (!is_valid_map_char(c))
-				print_error("Invalid character in map");
+				error_and_cleanup("Invalid character in map", game);
 			x++;
 		}
 		y++;
@@ -73,9 +73,9 @@ void	check_player(t_game *game)
 		y++;
 	}
 	if (player_count == 0)
-		print_error("No player found in map");
+		error_and_cleanup("No player found in map", game);
 	if (player_count > 1)
-		print_error("Multiple player positions in map");
+		error_and_cleanup("Multiple player positions in map", game);
 }
 
 void	check_closure(t_game *game)
@@ -88,7 +88,7 @@ void	check_closure(t_game *game)
 	y = 0;
 	copy = duplicate_map(game->map.grid);
 	if (!copy)
-		print_error("Failed to duplicate map copy");
+		error_and_cleanup("Failed to duplicate map copy", game);
 	find_player_position(game->map.grid, &x, &y);
 	copy[y][x] = '0';
 	flood_fill(copy, x, y);

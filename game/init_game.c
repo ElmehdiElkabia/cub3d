@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/23 10:10:56 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/24 20:18:08 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_player(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0;
-	player->move_speed = 0.07;
-	player->rot_speed = 0.26179938779; // 15 radian !
+	player->move_speed = 0.02;
+	player->rot_speed = 0.02; // 15 radian !
 }
 
 void	init_texture(t_game *data)
@@ -62,4 +62,5 @@ void	init_game(t_game *data)
 	init_map(&data->map);
 	init_player(&data->player);
 	init_texture(data);
+	ft_bzero(&data->keys, sizeof(t_keys));
 }

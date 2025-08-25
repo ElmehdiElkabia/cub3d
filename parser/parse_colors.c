@@ -6,16 +6,16 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/04 17:55:33 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/23 15:55:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int skip_identifier(char *line, int id)
+static int	skip_identifier(char *line, int id)
 {
-	int i;
-	char *type;
+	int		i;
+	char	*type;
 
 	i = 0;
 	if (id == 0)
@@ -32,11 +32,11 @@ static int skip_identifier(char *line, int id)
 	return (i);
 }
 
-void get_color(char **colors, t_game *game, int id)
+void	get_color(char **colors, t_game *game, int id)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
@@ -44,7 +44,7 @@ void get_color(char **colors, t_game *game, int id)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		ft_free_split(colors);
-		print_error("Color value out of range");
+		error_and_cleanup("Color value out of range", game);
 	}
 	if (id == 0)
 	{
@@ -62,9 +62,7 @@ void get_color(char **colors, t_game *game, int id)
 
 int	check_color(char **colors)
 {
-	int	slot;
-	int	i;
-
+	int (slot), (i);
 	slot = 0;
 	while (colors[slot])
 	{
@@ -75,10 +73,11 @@ int	check_color(char **colors)
 			return (1);
 		while (colors[slot][i])
 		{
-			if (colors[slot][i] == ' ' || colors[slot][i] == '\t' || colors[slot][i] == '\n')
+			if (colors[slot][i] == ' ' || colors[slot][i] == '\t'
+				|| colors[slot][i] == '\n')
 			{
 				i++;
-				continue;
+				continue ;
 			}
 			if (colors[slot][i] < '0' || colors[slot][i] > '9')
 				return (1);
@@ -89,38 +88,24 @@ int	check_color(char **colors)
 	return (0);
 }
 
-
-void edit_the_last_slot_of_colors(char **colors)
+void	parse_colors(char *line, t_game *game, int id)
 {
-	int slot = 0;
-	int i = 0;
-	while (colors[slot])
-		slot++;
-	while (colors[slot - 1][i])
-		i++;
-	if (i > 0 && colors[slot - 1][i - 1] == '\n')
-		colors[slot - 1][i - 1] = '\0';
-}
-
-void parse_colors(char *line, t_game *game, int id)
-{
-	int i;
-	char **colors;
+	int		i;
+	char	**colors;
 
 	i = skip_identifier(line, id);
 	if (i == -1)
-		print_error("Invalid color line");
+		error_and_cleanup("Invalid color line", game);
 	colors = ft_split(line + i, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
 	{
 		ft_free_split(colors);
-		print_error("Invalid color format (must be R,G,B)");
+		error_and_cleanup("Invalid color format (must be R,G,B)", game);
 	}
-	// edit_the_last_slot_of_colors(colors);
 	if (check_color(colors))
 	{
 		ft_free_split(colors);
-		print_error("Invalid color (must be number)");
+		error_and_cleanup("Invalid color (must be number)", game);
 	}
 	get_color(colors, game, id);
 	ft_free_split(colors);

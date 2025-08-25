@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:18:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/07/16 20:14:47 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_map(char *line, t_game *game)
 	game->map_lines = append_map_line(game->map_lines, line,
 			game->map_line_count);
 	if (!game->map_lines)
-		print_error("Map allocation failed");
+		error_and_cleanup("Map allocation failed", game);
 	game->map_line_count++;
 }
 

@@ -6,49 +6,42 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:58:26 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/06 12:40:35 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/24 13:21:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void calc_wall_dist(t_ray *r, t_player *p)
+void	calculate_distance(t_ray *ray)
 {
-	if (r->hit_side == 0)
-		r->dist = (r->map.x - p->pos.x + (1 - r->step.x) / 2) / r->dir.x;
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->side_dist.x - ray->delta_dist.x);
 	else
-		r->dist = (r->map.y - p->pos.y + (1 - r->step.y) / 2) / r->dir.y;
+		ray->perp_wall_dist = (ray->side_dist.y - ray->delta_dist.y);
 }
 
-void draw_wall_slice(t_game *d, t_ray *r, int x)
+void	calculate_wall_dimensions(t_ray *r, int *line_height, int *draw_start,
+		int *draw_end)
 {
-	int line_height;
-	int draw_start;
-	int draw_end;
-	int color;
-
-	line_height = (int)(IMAGE_HEIGHT / r->dist);
-	draw_start = -line_height / 2 + IMAGE_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + IMAGE_HEIGHT / 2;
-	if (draw_end >= IMAGE_HEIGHT)
-		draw_end = IMAGE_HEIGHT - 1;
-	if (r->hit_side == 0)
-		color = 0xAAAAAA;
-	else
-		color = 0x888888;
-	draw_vertical_line(d, x, draw_start, draw_end, color);
+	if (r->perp_wall_dist < 0.000001)
+		r->perp_wall_dist = 0.000001;
+	*line_height = (int)(IMAGE_HEIGHT / r->perp_wall_dist);
+	*draw_start = -*line_height / 2 + IMAGE_HEIGHT / 2;
+	if (*draw_start < 0)
+		*draw_start = 0;
+	*draw_end = *line_height / 2 + IMAGE_HEIGHT / 2;
+	if (*draw_end >= IMAGE_HEIGHT)
+		*draw_end = IMAGE_HEIGHT - 1;
 }
 
-void draw_vertical_line(t_game *data, int x, int y_start, int y_end, int color)
+double	calculate_wall_position(t_game *data, t_ray *r)
 {
-	int y;
+	double	wall_x;
 
-	y = y_start;
-	while (y < y_end)
-	{
-		my_mlx_pixel_put(&data->img, x, y, color);
-		y++;
-	}
+	if (r->side == 0)
+		wall_x = data->player.pos.y + r->perp_wall_dist * r->dir.y;
+	else
+		wall_x = data->player.pos.x + r->perp_wall_dist * r->dir.x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
 }
