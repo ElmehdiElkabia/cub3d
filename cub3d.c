@@ -6,11 +6,28 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 12:29:35 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/25 10:15:28 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+int	validate_file(char *filename)
+{
+	int	fd;
+	int	len;
+
+	if (!filename)
+		print_error("Error: No filename provided");
+	len = ft_strlen(filename);
+	if (len < 4 || ft_strncmp(filename + len - 4, ".cub", 4) != 0)
+		print_error("Error: Map file must have .cub extension");
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		print_error("Error: Cannot open map file");
+	close(fd);
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,6 +35,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (print_error("Usage: ./cub3D <map_file.cub>"));
+	if (!validate_file(argv[1]))
+		return (1);
 	else
 	{
 		init_game(&data);

@@ -25,10 +25,10 @@
 # define IMAGE_WIDTH 1280
 # define IMAGE_HEIGHT 720
 # define TILE_SIZE 64
-#define MINI_VIEW_W 10
-#define MINI_VIEW_H 10
-#define MINI_TILE 10
-#define MINI_MAP 8
+# define MINI_VIEW_W 10
+# define MINI_VIEW_H 10
+# define MINI_TILE 10
+# define MINI_MAP 8
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE 1.0471975511965976
 # define NORTH 0
@@ -212,5 +212,5 @@ void			rotate_vector(t_vector *vec, double angle);
 void			handle_rotation(t_game *game);
 int				handle_mouse(int x, int y, t_game *game);
 
-void 			draw_mini_map(t_game *game);
+void			draw_mini_map(t_game *game);
 #endif
