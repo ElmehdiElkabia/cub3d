@@ -6,11 +6,54 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 14:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/24 12:45:56 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:11:33 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	draw_crosshair(t_game *game)
+{
+	int	cx;
+	int	cy;
+	int	size;
+	int	color;
+	int	i;
+
+	cx = IMAGE_WIDTH / 2;
+	cy = IMAGE_HEIGHT / 2;
+	size = 10;
+	color = 0xFF0000;
+	i = -size;
+	while (i <= size)
+	{
+		my_mlx_pixel_put(&game->img, cx + i, cy, color);
+		i++;
+	}
+	i = -size;
+	while (i < size)
+	{
+		my_mlx_pixel_put(&game->img, cx, cy + i, color);
+		i++;
+	}
+}
+
+void	shouting(t_game *data)
+{
+	if (!data->player.anim_playing)
+		return ;
+	data->player.frame_counter++;
+	if (data->player.frame_counter >= 10)
+	{
+		data->player.frame++;
+		data->player.frame_counter = 0;
+		if (data->player.frame >= 4)
+		{
+			data->player.frame = 0;
+			data->player.anim_playing = 0;
+		}
+	}
+}
 
 int	render_frame(t_game *data)
 {
@@ -26,6 +69,9 @@ int	render_frame(t_game *data)
 	ft_bzero(data->img.addr, IMAGE_HEIGHT * IMAGE_WIDTH * (data->img.bpp / 8));
 	raycasting(data);
 	draw_mini_map(data);
+	shouting(data);
+	draw_player_anim(data);
+	draw_crosshair(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
 		0, 0);
 	mlx_mouse_move(data->mlx.mlx_ptr, data->mlx.win_ptr, IMAGE_WIDTH / 2,

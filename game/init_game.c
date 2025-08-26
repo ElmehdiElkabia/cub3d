@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 13:37:47 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:54:54 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_player(t_player *player)
 	player->plane.x = 0;
 	player->plane.y = 0;
 	player->move_speed = 0.02;
-	player->rot_speed = 0.02;
+	player->rot_speed = 0.04;
 }
 
 void	init_texture(t_game *data)

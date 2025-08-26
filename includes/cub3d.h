@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/25 11:04:34 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:51:45 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ typedef struct s_player
 	t_vector	plane;
 	double		move_speed;
 	double		rot_speed;
+	t_texture	anim[4];
+	int			frame;
+	int			frame_counter;
+	int			anim_playing;
 }				t_player;
 
 typedef struct s_color
@@ -215,4 +219,7 @@ void			handle_rotation(t_game *game);
 int				handle_mouse(int x, int y, t_game *game);
 
 void			draw_mini_map(t_game *game);
+int				key_press_mouse(int button, int x, int y, void *param);
+void			shouting(t_game *data);
+void			draw_player_anim(t_game *game);
 #endif
