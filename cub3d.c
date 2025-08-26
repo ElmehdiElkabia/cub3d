@@ -51,7 +51,7 @@ void    shouting(t_game *data)
 
     data->player.frame_counter++;
 
-    if (data->player.frame_counter >= 15)
+    if (data->player.frame_counter >= 10)
     {
         data->player.frame++;
         data->player.frame_counter = 0;
