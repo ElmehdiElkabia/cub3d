@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/25 10:24:23 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/26 09:15:05 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_player
 	t_texture   anim[4];
     int         frame;
     int         frame_counter;
+	int			anim_playing;
 }				t_player;
 
 typedef struct s_color
@@ -217,4 +218,5 @@ int				handle_mouse(int x, int y, t_game *game);
 
 void 			draw_mini_map(t_game *game);
 void    draw_player_anim(t_game *game);
+void    shouting(t_game *data);
 #endif

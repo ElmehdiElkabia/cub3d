@@ -41,8 +41,37 @@ void    load_player_anim(t_game *game)
     }
     game->player.frame = 0;
     game->player.frame_counter = 0;
+    game->player.anim_playing = 0;
 }
 
+void    shouting(t_game *data)
+{
+    if (!data->player.anim_playing)
+        return;
+
+    data->player.frame_counter++;
+
+    if (data->player.frame_counter >= 15)
+    {
+        data->player.frame++;
+        data->player.frame_counter = 0;
+
+        if (data->player.frame >= 4)
+        {
+            data->player.frame = 0;
+            data->player.anim_playing = 0;
+        }
+    }
+}
+int    key_press_mouse(int button, int x, int y, void *param)
+{
+    (void)x;
+    (void)y;
+    t_game *data = (t_game *)param;
+    if (button == 1)
+        data->player.anim_playing = 1;
+    return 0;
+}
 int	main(int argc, char **argv)
 {
 	t_game	data;
@@ -61,6 +90,7 @@ int	main(int argc, char **argv)
 		mlx_hook(data.mlx.win_ptr, 3, 1L << 1, key_release, &data);
 		mlx_hook(data.mlx.win_ptr, 6, 1L << 6, handle_mouse, &data);
 		mlx_hook(data.mlx.win_ptr, 17, 1L << 17, close_window, &data);
+        mlx_mouse_hook(data.mlx.win_ptr, key_press_mouse, &data);
 		mlx_loop_hook(data.mlx.mlx_ptr, game_loop, &data);
 		mlx_loop(data.mlx.mlx_ptr);
 	}
