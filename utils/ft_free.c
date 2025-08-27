@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:17:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:49:05 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:51:30 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,21 @@ void	free_texture_data(t_game *data)
 		}
 		i++;
 	}
+	i = 0;
+	while (i < 4)
+	{
+		if (data->player.anim[i].path)
+		{
+			free(data->player.anim[i].path);
+			data->player.anim[i].path = NULL;
+		}
+		if (data->player.anim[i].img && data->mlx.mlx_ptr)
+		{
+			mlx_destroy_image(data->mlx.mlx_ptr, data->player.anim[i].img);
+			data->player.anim[i].img = NULL;
+			data->player.anim[i].addr = NULL;
+		}
+		i++;
+	}
+	
 }
