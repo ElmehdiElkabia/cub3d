@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:09:07 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:25:48 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_map_line(char *line)
 int	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\n');
+		|| c == ' ' || c == 'D' || c == '\n');
 }
 
 void	check_characters(t_game *game)

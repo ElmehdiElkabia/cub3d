@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:41:23 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/26 09:34:57 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:25:11 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys.right = 1;
 	else if (keycode == 65307)
 		game->keys.esc = 1;
+	else if (keycode == 101)
+		handel_dor(game);
 	return (0);
 }
 

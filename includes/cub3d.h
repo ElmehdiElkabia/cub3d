@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/26 09:15:05 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:24:24 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,4 +219,5 @@ int				handle_mouse(int x, int y, t_game *game);
 void 			draw_mini_map(t_game *game);
 void    draw_player_anim(t_game *game);
 void    shouting(t_game *data);
+void handel_dor(t_game *data);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:44:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 13:08:40 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:40:18 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ void draw_mini_map(t_game *game)
 
             if (game->map.grid[map_y][map_x] == '1')
                 draw_square_minimap(game, y, x, 0x333333);
+			else if (game->map.grid[map_y][map_x] == 'D')
+                draw_square_minimap(game, y, x, 0xF04000);
+			else if (game->map.grid[map_y][map_x] == 'O')
+                draw_square_minimap(game, y, x, 0x799C00);
             else
                 draw_square_minimap(game, y, x, 0xCCCCCC);
         }
