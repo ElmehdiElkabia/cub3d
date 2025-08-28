@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:43:46 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,5 +249,6 @@ void			print_doors_info(t_game *game);
 t_door			*get_door_at(t_game *game, int x, int y);
 void			draw_door(t_game *data, t_ray *r, int x);
 void			load_door_texture(t_game *game);
+void			handel_dor(t_game *data);
 
 #endif

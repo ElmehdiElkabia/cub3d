@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keys.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:41:23 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 13:32:37 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:43:05 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys.right = 1;
 	else if (keycode == 65307)
 		game->keys.esc = 1;
+	else if (keycode == 101)
+		handel_dor(game);
 	return (0);
 }
 
