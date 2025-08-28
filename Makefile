@@ -38,6 +38,6 @@ fclean: clean
 
 re: fclean all
 
-run: maps/map.cub
-	dos2unix maps/map.cub
-	./cub3D maps/map.cub
+run: maps/good/cheese_maze.cub
+	dos2unix maps/good/cheese_maze.cub
+	./cub3D maps/good/cheese_maze.cub
