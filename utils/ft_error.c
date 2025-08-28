@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:42:54 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,14 @@ void	error_and_cleanup(char *str, t_game *game)
 		free_texture_data(game);
 	}
 	exit(1);
+}
+
+void	free_doors(t_game *game)
+{
+	if (game->map.doors)
+	{
+		free(game->map.doors);
+		game->map.doors = NULL;
+	}
+	game->map.door_count = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 10:51:20 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	perform_dda(t_game *data, t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1')
+		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1' ||
+			data->map.grid[(int)ray->map.y][(int)ray->map.x] == 'D')
 			break ;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 14:54:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/26 16:21:55 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,34 @@ void	load_textures(t_game *game)
 		load_single_texture(game, i);
 		i++;
 	}
+	load_door_texture(game);
 	load_player_anim(game);
+}
+
+void	load_door_texture(t_game *game)
+{
+	game->door_texture.path = ft_strdup("texture/simonkraft/cobblestone.xpm");
+	if (!game->door_texture.path)
+	{
+		print_error("Failed to allocate door texture path");
+		cleanup_and_exit(game, 1);
+	}
+	
+	game->door_texture.img = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+			game->door_texture.path, &game->door_texture.width,
+			&game->door_texture.height);
+	if (!game->door_texture.img)
+	{
+		print_error("Failed to load door texture image");
+		cleanup_and_exit(game, 1);
+	}
+	
+	game->door_texture.addr = mlx_get_data_addr(game->door_texture.img,
+			&game->door_texture.bpp, &game->door_texture.line_len,
+			&game->door_texture.endian);
+	if (!game->door_texture.addr)
+	{
+		print_error("Failed to get door texture data address");
+		cleanup_and_exit(game, 1);
+	}
 }

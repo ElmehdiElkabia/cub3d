@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:17:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 12:49:05 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_map_data(t_game *data)
 		data->map_lines = NULL;
 		data->map.grid = NULL;
 	}
+	free_doors(data);
 }
 
 void	free_texture_data(t_game *data)
@@ -59,5 +60,17 @@ void	free_texture_data(t_game *data)
 			data->texture[i].addr = NULL;
 		}
 		i++;
+	}
+	// Free door texture
+	if (data->door_texture.path)
+	{
+		free(data->door_texture.path);
+		data->door_texture.path = NULL;
+	}
+	if (data->door_texture.img && data->mlx.mlx_ptr)
+	{
+		mlx_destroy_image(data->mlx.mlx_ptr, data->door_texture.img);
+		data->door_texture.img = NULL;
+		data->door_texture.addr = NULL;
 	}
 }

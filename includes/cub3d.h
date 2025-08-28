@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/26 15:51:45 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+
+# define DOOR_CLOSED 0
+# define DOOR_OPENING 1
+# define DOOR_OPEN 2
+# define DOOR_CLOSING 3
+
+typedef struct s_door
+{
+	int			x;
+	int			y;
+	int			state;
+	double		anim_progress;
+	double		anim_speed;
+}				t_door;
 
 typedef struct s_texture
 {
@@ -81,6 +95,8 @@ typedef struct s_map
 	int			height;
 	t_color		floor;
 	t_color		ceiling;
+	t_door		*doors;
+	int			door_count;
 }				t_map;
 
 typedef struct s_img
@@ -157,6 +173,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	texture[4];
+	t_texture	door_texture;
 	char		**map_lines;
 	int			map_line_count;
 	int			in_map;
@@ -222,4 +239,15 @@ void			draw_mini_map(t_game *game);
 int				key_press_mouse(int button, int x, int y, void *param);
 void			shouting(t_game *data);
 void			draw_player_anim(t_game *game);
+
+// Door parsing functions
+void			init_doors(t_game *game);
+void			free_doors(t_game *game);
+void			print_doors_info(t_game *game);
+
+// Door drawing functions
+t_door			*get_door_at(t_game *game, int x, int y);
+void			draw_door(t_game *data, t_ray *r, int x);
+void			load_door_texture(t_game *game);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/26 15:54:54 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_map(t_map *map)
 	map->ceiling.r = 0;
 	map->ceiling.g = 0;
 	map->ceiling.b = 0;
+	map->doors = NULL;
+	map->door_count = 0;
 }
 
 void	init_player(t_player *player)
@@ -54,6 +56,15 @@ void	init_texture(t_game *data)
 		data->texture[i].endian = 0;
 		i++;
 	}
+	// Initialize door texture
+	data->door_texture.path = NULL;
+	data->door_texture.img = NULL;
+	data->door_texture.addr = NULL;
+	data->door_texture.width = 0;
+	data->door_texture.height = 0;
+	data->door_texture.bpp = 0;
+	data->door_texture.line_len = 0;
+	data->door_texture.endian = 0;
 }
 
 void	init_game(t_game *data)

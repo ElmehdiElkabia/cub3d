@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:09:07 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:42:44 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_map_line(char *line)
 	while (*line)
 	{
 		if (*line == '1' || *line == '0' || *line == ' ' || *line == 'N'
-			|| *line == 'S' || *line == 'E' || *line == 'W')
+			|| *line == 'S' || *line == 'E' || *line == 'W' || *line == 'D')
 			return (1);
 		line++;
 	}
@@ -27,7 +27,7 @@ int	is_map_line(char *line)
 int	is_valid_map_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\n');
+		|| c == ' ' || c == '\n' || c == 'D');
 }
 
 void	check_characters(t_game *game)

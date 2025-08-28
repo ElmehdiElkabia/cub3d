@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:44:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/24 13:08:40 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	draw_mini_map(t_game *game)
 			}
 			if (game->map.grid[map_y][map_x] == '1')
 				draw_square_minimap(game, y, x, 0x333333);
+			else if (game->map.grid[map_y][map_x] == 'D')
+				draw_square_minimap(game, y, x, 0x996633); // Brown color for doors
 			else
 				draw_square_minimap(game, y, x, 0xCCCCCC);
 		}

@@ -12,7 +12,7 @@ LIB = $(LIBFT_DIR)/libft.a
 
 SRC =cub3d.c events/close_program.c  events/handle_keys.c events/handle_mouse.c events/destroy.c \
 	game/game_loop.c game/init_game.c game/set_player.c game/init_minilibx.c \
-	parser/check_map.c parser/parse_colors.c parser/parse_file.c parser/parse_map.c parser/parse_textures.c parser/flood_fill.c \
+	parser/check_map.c parser/parse_colors.c parser/parse_file.c parser/parse_map.c parser/parse_textures.c parser/flood_fill.c parser/door_parsing.c \
 	render/draw_walls.c  render/raycasting.c render/render_frame.c render/texture_mapping.c  render/render_colors.c  render/draw_mini_map.c \
 	 textures/load_textures.c \
 	utils/ft_error.c utils/ft_free.c \
@@ -39,5 +39,4 @@ fclean: clean
 re: fclean all
 
 run: maps/good/cheese_maze.cub
-	dos2unix maps/good/cheese_maze.cub
 	./cub3D maps/good/cheese_maze.cub
