@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:44:02 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:54:28 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,34 +74,33 @@ void	draw_player_minimap(t_game *game)
 	}
 }
 
-void	draw_mini_map(t_game *game)
+void draw_mini_map(t_game *game)
 {
-	int	start_x;
-	int	start_y;
-	int	map_x;
-	int	map_y;
+    int start_x = (int)game->player.pos.x - MINI_VIEW_W / 2;
+    int start_y = (int)game->player.pos.y - MINI_VIEW_H / 2;
 
-	start_x = (int)game->player.pos.x - MINI_VIEW_W / 2;
-	start_y = (int)game->player.pos.y - MINI_VIEW_H / 2;
-	for (int y = 0; y < MINI_VIEW_H; y++)
-	{
-		for (int x = 0; x < MINI_VIEW_W; x++)
-		{
-			map_x = start_x + x;
-			map_y = start_y + y;
-			if (map_x < 0 || map_x >= game->map.width - 1 || map_y < 0
-				|| map_y >= game->map.height)
-			{
-				draw_square_minimap(game, y, x, 0x000000);
-				continue ;
-			}
-			if (game->map.grid[map_y][map_x] == '1')
-				draw_square_minimap(game, y, x, 0x333333);
+    for (int y = 0; y < MINI_VIEW_H; y++)
+    {
+        for (int x = 0; x < MINI_VIEW_W; x++)
+        {
+            int map_x = start_x + x;
+            int map_y = start_y + y;
+
+            if (map_x < 0 || map_x >= game->map.width - 1 || map_y < 0 || map_y >= game->map.height)
+            {
+                draw_square_minimap(game, y, x, 0x000000);
+                continue;
+            }
+
+            if (game->map.grid[map_y][map_x] == '1')
+                draw_square_minimap(game, y, x, 0x333333);
 			else if (game->map.grid[map_y][map_x] == 'D')
-				draw_square_minimap(game, y, x, 0x996633); // Brown color for doors
-			else
-				draw_square_minimap(game, y, x, 0xCCCCCC);
-		}
-	}
-	draw_player_minimap(game);
+                draw_square_minimap(game, y, x, 0xF04000);
+			else if (game->map.grid[map_y][map_x] == 'O')
+                draw_square_minimap(game, y, x, 0x799C00);
+            else
+                draw_square_minimap(game, y, x, 0xCCCCCC);
+        }
+    }
+    draw_player_minimap(game);
 }
