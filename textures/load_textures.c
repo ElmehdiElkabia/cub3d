@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 14:54:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:12:50 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	load_textures(t_game *game)
 
 void	load_door_texture(t_game *game)
 {
-	game->door_texture.path = ft_strdup("texture/simonkraft/cobblestone.xpm");
+	game->door_texture.path = ft_strdup("texture/dor.xpm");
 	if (!game->door_texture.path)
 	{
 		print_error("Failed to allocate door texture path");
