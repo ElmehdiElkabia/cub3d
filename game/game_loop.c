@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:46:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 14:40:00 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:53:46 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	update_position(t_game *game, double new_x, double new_y)
 	map_y = (int)(game->player.pos.y);
 	if (game->map.grid[map_y][(int)new_x] != '1' && game->map.grid[map_y][(int)new_x] != 'D')
 		game->player.pos.x = new_x;
-	if (game->map.grid[(int)new_y][map_x] != '1' && game->map.grid[map_y][(int)new_x] != 'D')
+	if (game->map.grid[(int)new_y][map_x] != '1' && game->map.grid[(int)new_y][map_x] != 'D')
 		game->player.pos.y = new_y;
 }
 
