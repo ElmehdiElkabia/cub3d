@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 14:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/26 16:11:33 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/29 09:51:14 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	render_frame(t_game *data)
 	draw_mini_map(data);
 	shouting(data);
 	draw_player_anim(data);
-	draw_crosshair(data);
+	if(data->player.anim_playing == 0)
+		draw_crosshair(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
 		0, 0);
 	mlx_mouse_move(data->mlx.mlx_ptr, data->mlx.win_ptr, IMAGE_WIDTH / 2,
