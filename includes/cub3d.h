@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 14:43:46 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:48:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
-# include "mlx/mlx.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -243,7 +243,6 @@ void			draw_player_anim(t_game *game);
 // Door parsing functions
 void			init_doors(t_game *game);
 void			free_doors(t_game *game);
-void			print_doors_info(t_game *game);
 
 // Door drawing functions
 t_door			*get_door_at(t_game *game, int x, int y);

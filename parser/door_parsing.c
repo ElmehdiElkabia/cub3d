@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 00:00:00 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:57:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,18 @@ static int	count_doors(t_game *game)
 	return (door_count);
 }
 
+static void	set_door_props(t_door *door, int x, int y)
+{
+	door->x = x;
+	door->y = y;
+	door->state = DOOR_CLOSED;
+	door->anim_progress = 0.0;
+	door->anim_speed = 0.05;
+}
+
 void	init_doors(t_game *game)
 {
-	int	x;
-	int	y;
-	int	door_index;
-
+	int (x), (y), (door_index);
 	game->map.door_count = count_doors(game);
 	if (game->map.door_count == 0)
 	{
@@ -58,31 +64,10 @@ void	init_doors(t_game *game)
 		while (x < (int)ft_strlen(game->map.grid[y]))
 		{
 			if (game->map.grid[y][x] == 'D')
-			{
-				game->map.doors[door_index].x = x;
-				game->map.doors[door_index].y = y;
-				game->map.doors[door_index].state = DOOR_CLOSED;
-				game->map.doors[door_index].anim_progress = 0.0;
-				game->map.doors[door_index].anim_speed = 0.05;
-				door_index++;
-			}
+				set_door_props(&game->map.doors[door_index++], x, y);
 			x++;
 		}
 		y++;
-	}
-}
-
-void	print_doors_info(t_game *game)
-{
-	int	i;
-
-	printf("Found %d doors:\n", game->map.door_count);
-	i = 0;
-	while (i < game->map.door_count)
-	{
-		printf("Door %d: position (%d, %d), state: %d\n", 
-			i, game->map.doors[i].x, game->map.doors[i].y, game->map.doors[i].state);
-		i++;
 	}
 }
 

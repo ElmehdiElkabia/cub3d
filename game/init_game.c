@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:58:50 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	init_texture(t_game *data)
 		data->texture[i].endian = 0;
 		i++;
 	}
-	// Initialize door texture
 	data->door_texture.path = NULL;
 	data->door_texture.img = NULL;
 	data->door_texture.addr = NULL;

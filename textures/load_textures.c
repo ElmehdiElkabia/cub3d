@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 14:54:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/29 17:12:50 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:54:32 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static void	load_single_player_anim(t_game *game, int i, char *path)
 {
-	game->player.anim[i].img = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
-			path, &game->player.anim[i].width,
-			&game->player.anim[i].height);
+	game->player.anim[i].img = mlx_xpm_file_to_image(game->mlx.mlx_ptr, path,
+			&game->player.anim[i].width, &game->player.anim[i].height);
 	if (!game->player.anim[i].img)
 		printf("Failed to load %s\n", path);
 	game->player.anim[i].addr = mlx_get_data_addr(game->player.anim[i].img,
@@ -93,7 +92,6 @@ void	load_door_texture(t_game *game)
 		print_error("Failed to allocate door texture path");
 		cleanup_and_exit(game, 1);
 	}
-	
 	game->door_texture.img = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
 			game->door_texture.path, &game->door_texture.width,
 			&game->door_texture.height);
@@ -102,7 +100,6 @@ void	load_door_texture(t_game *game)
 		print_error("Failed to load door texture image");
 		cleanup_and_exit(game, 1);
 	}
-	
 	game->door_texture.addr = mlx_get_data_addr(game->door_texture.img,
 			&game->door_texture.bpp, &game->door_texture.line_len,
 			&game->door_texture.endian);

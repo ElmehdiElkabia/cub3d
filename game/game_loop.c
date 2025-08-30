@@ -54,9 +54,11 @@ static void	update_position(t_game *game, double new_x, double new_y)
 
 	map_x = (int)(game->player.pos.x);
 	map_y = (int)(game->player.pos.y);
-	if (game->map.grid[map_y][(int)new_x] != '1' && game->map.grid[map_y][(int)new_x] != 'D')
+	if (game->map.grid[map_y][(int)new_x] != '1'
+		&& game->map.grid[map_y][(int)new_x] != 'D')
 		game->player.pos.x = new_x;
-	if (game->map.grid[(int)new_y][map_x] != '1' && game->map.grid[(int)new_y][map_x] != 'D')
+	if (game->map.grid[(int)new_y][map_x] != '1'
+		&& game->map.grid[(int)new_y][map_x] != 'D')
 		game->player.pos.y = new_y;
 }
 

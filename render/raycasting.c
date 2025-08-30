@@ -75,8 +75,8 @@ void	perform_dda(t_game *data, t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1' ||
-			data->map.grid[(int)ray->map.y][(int)ray->map.x] == 'D')
+		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1'
+			|| data->map.grid[(int)ray->map.y][(int)ray->map.x] == 'D')
 			break ;
 	}
 }

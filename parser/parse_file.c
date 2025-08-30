@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:42:44 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:48:18 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,5 @@ void	*parser_file(char *file, t_game *game)
 	game->map.width = get_map_width(game);
 	check_map(game);
 	init_doors(game);
-	print_doors_info(game);
 	return (NULL);
 }

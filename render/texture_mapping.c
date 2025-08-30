@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_mapping.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:34:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:54:03 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,11 @@ void	texture_mapping(t_game *data, t_ray *r, int x)
 {
 	t_tex_vars	vars;
 
-	// Check if we're drawing a door
 	if (data->map.grid[(int)r->map.y][(int)r->map.x] == 'D')
 	{
 		draw_door(data, r, x);
-		return;
+		return ;
 	}
-	
 	vars.wall_x = calculate_wall_position(data, r);
 	vars.texture = select_texture(data, r);
 	vars.tex_x = calculate_texture_x(vars.texture, r, vars.wall_x);
@@ -85,27 +83,21 @@ void	draw_door(t_game *data, t_ray *r, int x)
 	door = get_door_at(data, (int)r->map.x, (int)r->map.y);
 	vars.wall_x = calculate_wall_position(data, r);
 	vars.texture = &data->door_texture;
-	
-	// Apply door animation offset
 	if (door && door->state != DOOR_CLOSED)
 	{
 		door_offset = door->anim_progress;
-		if (r->side == 0) // vertical wall
+		if (r->side == 0)
 			vars.wall_x += door_offset;
-		else // horizontal wall
+		else
 			vars.wall_x += door_offset;
 	}
-	
 	vars.tex_x = calculate_texture_x(vars.texture, r, vars.wall_x);
 	calculate_wall_dimensions(r, &vars.line_height, &vars.draw_start,
 		&vars.draw_end);
-	
-	// Make door partially transparent when opening/closing
 	if (door && (door->state == DOOR_OPENING || door->state == DOOR_CLOSING))
 	{
-		// Modify the drawing to show animation
-		vars.draw_end = vars.draw_start + (int)(vars.line_height * (1.0 - door->anim_progress * 0.5));
+		vars.draw_end = vars.draw_start + (int)(vars.line_height * (1.0
+					- door->anim_progress * 0.5));
 	}
-	
 	draw_textured_vertical_line(data, vars.texture, x, vars);
 }

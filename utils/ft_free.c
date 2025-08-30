@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:17:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:53:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 10:52:09 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_map_data(t_game *data)
 	free_doors(data);
 }
 
-void	free_texture_data(t_game *data)
+void	free_texture_paths(t_game *data)
 {
 	int	i;
 
@@ -53,19 +53,40 @@ void	free_texture_data(t_game *data)
 			free(data->texture[i].path);
 			data->texture[i].path = NULL;
 		}
+		if (data->player.anim[i].path)
+		{
+			free(data->player.anim[i].path);
+			data->player.anim[i].path = NULL;
+		}
+		i++;
+	}
+	if (data->door_texture.path)
+	{
+		free(data->door_texture.path);
+		data->door_texture.path = NULL;
+	}
+}
+
+void	free_texture_images(t_game *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
 		if (data->texture[i].img && data->mlx.mlx_ptr)
 		{
 			mlx_destroy_image(data->mlx.mlx_ptr, data->texture[i].img);
 			data->texture[i].img = NULL;
 			data->texture[i].addr = NULL;
 		}
+		if (data->player.anim[i].img && data->mlx.mlx_ptr)
+		{
+			mlx_destroy_image(data->mlx.mlx_ptr, data->player.anim[i].img);
+			data->player.anim[i].img = NULL;
+			data->texture[i].addr = NULL;
+		}
 		i++;
-	}
-	// Free door texture
-	if (data->door_texture.path)
-	{
-		free(data->door_texture.path);
-		data->door_texture.path = NULL;
 	}
 	if (data->door_texture.img && data->mlx.mlx_ptr)
 	{
@@ -73,4 +94,10 @@ void	free_texture_data(t_game *data)
 		data->door_texture.img = NULL;
 		data->door_texture.addr = NULL;
 	}
+}
+
+void	free_texture_data(t_game *data)
+{
+	free_texture_paths(data);
+	free_texture_images(data);
 }

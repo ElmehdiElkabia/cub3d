@@ -71,7 +71,7 @@ int	render_frame(t_game *data)
 	draw_mini_map(data);
 	shouting(data);
 	draw_player_anim(data);
-	if(data->player.anim_playing == 0)
+	if (data->player.anim_playing == 0)
 		draw_crosshair(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
 		0, 0);
