@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 10:57:02 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:15:11 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	init_doors(t_game *game)
 	if (game->map.door_count == 0)
 	{
 		game->map.doors = NULL;
-		printf("No doors found in map\n");
 		return ;
 	}
 	game->map.doors = malloc(sizeof(t_door) * game->map.door_count);

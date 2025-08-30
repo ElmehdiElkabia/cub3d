@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:03:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/19 13:03:09 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:40:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ int	skip_identifier(char *line, int id)
 	return (i);
 }
 
+void	validate_texture_path(char *path, t_game *game)
+{
+	int	len;
+	int	fd;
+
+	if (!path)
+		error_and_cleanup("Error: Empty texture path", game);
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
+		error_and_cleanup("Error: Texture must be .xpm file", game);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		error_and_cleanup("Error: Cannot open texture file", game);
+	close(fd);
+}
+
 void	parse_texture(char *line, t_game *game, int id)
 {
 	int	i;
@@ -56,4 +72,5 @@ void	parse_texture(char *line, t_game *game, int id)
 	game->texture[id].path = ft_substr(line, path_start, i - path_start);
 	if (!game->texture[id].path)
 		error_and_cleanup("Malloc failed in parse_texture", game);
+	validate_texture_path(game->texture[id].path, game);
 }

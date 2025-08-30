@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:18:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/25 11:04:21 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:08:15 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	parse_map(char *line, t_game *game)
 
 void	check_map(t_game *game)
 {
+	if (game->map_line_count < 3)
+		error_and_cleanup("Error: Map too small", game);
+	if (game->map.width < 3)
+		error_and_cleanup("Error: Map too small", game);
 	check_characters(game);
 	check_player(game);
 	check_closure(game);

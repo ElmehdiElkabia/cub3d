@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 10:57:16 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:15:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,39 @@ int	check_color(char **colors)
 	return (0);
 }
 
-void	parse_colors(char *line, t_game *game, int id)
+int	is_empty_or_whitespace(char *str)
 {
-	int		i;
-	char	**colors;
+	int	i;
 
-	i = skip_identifier(line, id);
-	if (i == -1)
-		error_and_cleanup("Invalid color line", game);
-	colors = ft_split(line + i, ',');
-	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
+	if (!str || str[0] == '\0')
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static void	validate_color_values(char **colors, t_game *game)
+{
+	int	count;
+
+	count = 0;
+	if (colors)
+	{
+		while (colors[count])
+			count++;
+	}
+	if (!colors || count != 3)
+	{
+		ft_free_split(colors);
+		error_and_cleanup("Invalid color format (must be R,G,B)", game);
+	}
+	if (is_empty_or_whitespace(colors[0]) || is_empty_or_whitespace(colors[1])
+		|| is_empty_or_whitespace(colors[2]))
 	{
 		ft_free_split(colors);
 		error_and_cleanup("Invalid color format (must be R,G,B)", game);
@@ -107,6 +130,22 @@ void	parse_colors(char *line, t_game *game, int id)
 		ft_free_split(colors);
 		error_and_cleanup("Invalid color (must be number)", game);
 	}
+}
+
+void	parse_colors(char *line, t_game *game, int id)
+{
+	int		i;
+	char	**colors;
+
+	if (id == 0 && game->map.floor.r != -1)
+		error_and_cleanup("Error: Floor color defined more than once", game);
+	if (id == 1 && game->map.ceiling.r != -1)
+		error_and_cleanup("Error: Ceiling color defined more than once", game);
+	i = skip_identifier(line, id);
+	if (i == -1)
+		error_and_cleanup("Invalid color line", game);
+	colors = ft_split(line + i, ',');
+	validate_color_values(colors, game);
 	get_color(colors, game, id);
 	ft_free_split(colors);
 }

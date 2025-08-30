@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 10:58:50 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:40:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	init_map(t_map *map)
 	map->grid = NULL;
 	map->height = 0;
 	map->width = 0;
-	map->floor.r = 0;
-	map->floor.g = 0;
-	map->floor.b = 0;
-	map->ceiling.r = 0;
-	map->ceiling.g = 0;
-	map->ceiling.b = 0;
+	map->floor.r = -1;
+	map->floor.g = -1;
+	map->floor.b = -1;
+	map->ceiling.r = -1;
+	map->ceiling.g = -1;
+	map->ceiling.b = -1;
 	map->doors = NULL;
 	map->door_count = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:16:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/23 15:54:33 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:14:36 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,26 +77,38 @@ void	find_player_position(char **map, int *px, int *py)
 		}
 		y++;
 	}
-	print_error("Player not found when trying to locate spawn point");
+	*px = -1;
+	*py = -1;
+}
+
+static int	is_invalid_cell(char **map, int x, int y)
+{
+	if (y < 0 || !map[y])
+		return (1);
+	if (x < 0 || x >= (int)ft_strlen(map[y]))
+		return (1);
+	if (map[y][x] == ' ' || map[y][x] == '\0')
+		return (1);
+	return (0);
+}
+
+static int	is_fillable_cell(char c)
+{
+	return (c == '0' || c == 'D');
 }
 
 void	flood_fill_recursive(char **map, int x, int y, int *error_flag)
 {
 	if (*error_flag)
 		return ;
-	if (x < 0 || y < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
+	if (is_invalid_cell(map, x, y))
 	{
 		*error_flag = 1;
 		return ;
 	}
-	if (map[y][x] == ' ' || map[y][x] == '\0')
-	{
-		*error_flag = 1;
+	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	}
-	if (map[y][x] != '0' && map[y][x] != '1')
-		return ;
-	if (map[y][x] == '1')
+	if (!is_fillable_cell(map[y][x]))
 		return ;
 	map[y][x] = 'F';
 	flood_fill_recursive(map, x + 1, y, error_flag);

@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 10:48:15 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 11:40:05 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ double			calculate_wall_position(t_game *data, t_ray *r);
 void			texture_mapping(t_game *data, t_ray *r, int x);
 
 void			flood_fill(char **map, int x, int y);
+void			flood_fill_recursive(char **map, int x, int y, int *error_flag);
 void			find_player_position(char **map, int *px, int *py);
 char			**duplicate_map(char **original);
 
