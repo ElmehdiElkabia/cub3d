@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 11:40:05 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:38:08 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,5 +250,12 @@ t_door			*get_door_at(t_game *game, int x, int y);
 void			draw_door(t_game *data, t_ray *r, int x);
 void			load_door_texture(t_game *game);
 void			handel_dor(t_game *data);
+
+int				starts_with(char *line, char *id);
+void			detect_type(char *line, t_game *game);
+int				is_empty_or_whitespace(char *str);
+void			replace_player_with_zero(char *line);
+
+int				is_valid_map_char(char c);
 
 #endif

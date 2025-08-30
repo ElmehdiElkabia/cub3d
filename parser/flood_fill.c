@@ -6,25 +6,11 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:16:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:14:36 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:36:41 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static void	replace_player_with_zero(char *line)
-{
-	int	j;
-
-	j = 0;
-	while (line[j])
-	{
-		if (line[j] == 'N' || line[j] == 'S' || line[j] == 'E'
-			|| line[j] == 'W')
-			line[j] = '0';
-		j++;
-	}
-}
 
 char	**duplicate_map(char **original)
 {
@@ -92,11 +78,6 @@ static int	is_invalid_cell(char **map, int x, int y)
 	return (0);
 }
 
-static int	is_fillable_cell(char c)
-{
-	return (c == '0' || c == 'D');
-}
-
 void	flood_fill_recursive(char **map, int x, int y, int *error_flag)
 {
 	if (*error_flag)
@@ -108,7 +89,7 @@ void	flood_fill_recursive(char **map, int x, int y, int *error_flag)
 	}
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	if (!is_fillable_cell(map[y][x]))
+	if (map[y][x] == '0' || map[y][x] == 'D')
 		return ;
 	map[y][x] = 'F';
 	flood_fill_recursive(map, x + 1, y, error_flag);

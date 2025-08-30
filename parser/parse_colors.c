@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:15:02 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/30 12:34:31 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,6 @@ int	check_color(char **colors)
 		slot++;
 	}
 	return (0);
-}
-
-int	is_empty_or_whitespace(char *str)
-{
-	int	i;
-
-	if (!str || str[0] == '\0')
-		return (1);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 static void	validate_color_values(char **colors, t_game *game)
