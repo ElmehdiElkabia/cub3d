@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 14:49:37 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/29 09:51:14 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/31 09:15:44 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ int	render_frame(t_game *data)
 		draw_crosshair(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.win_ptr, data->img.img,
 		0, 0);
-	mlx_mouse_move(data->mlx.mlx_ptr, data->mlx.win_ptr, IMAGE_WIDTH / 2,
-		IMAGE_HEIGHT / 2);
 	return (0);
 }
 

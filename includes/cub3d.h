@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:38:08 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/31 08:52:54 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_keys
 	int			left;
 	int			right;
 	int			esc;
+	int			mouse_fixed;
 }				t_keys;
 
 typedef struct s_game

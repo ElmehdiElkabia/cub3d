@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mouse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:21:01 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 13:56:16 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/31 09:15:35 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	handle_mouse(int x, int y, t_game *game)
 		rot = dx * game->player.rot_speed * 0.02;
 		rotate_vector(&game->player.dir, rot);
 		rotate_vector(&game->player.plane, rot);
-		mlx_mouse_move(game->mlx.mlx_ptr, game->mlx.win_ptr, center_x,
-			IMAGE_HEIGHT / 2);
+		if(game->keys.mouse_fixed == 1)
+			mlx_mouse_move(game->mlx.mlx_ptr, game->mlx.win_ptr, center_x,
+				IMAGE_HEIGHT / 2);
 	}
 	return (0);
 }

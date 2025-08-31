@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:41:23 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/28 14:43:05 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/08/31 09:17:16 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	key_press(int keycode, t_game *game)
 		game->keys.esc = 1;
 	else if (keycode == 101)
 		handel_dor(game);
+	else if (keycode == 65505)
+		game->keys.mouse_fixed = 0;
+	else if (keycode == 65509)
+		game->keys.mouse_fixed = 1;
 	return (0);
 }
 
@@ -81,7 +85,7 @@ void	rotate_vector(t_vector *vec, double angle)
 	double	old_x;
 
 	old_x = vec->x;
-	vec->x = vec->x * cos(angle) - vec->y * sin(angle);
+	vec->x = old_x * cos(angle) - vec->y * sin(angle);
 	vec->y = old_x * sin(angle) + vec->y * cos(angle);
 }
 
