@@ -26,7 +26,7 @@ int	handle_mouse(int x, int y, t_game *game)
 		rot = dx * game->player.rot_speed * 0.02;
 		rotate_vector(&game->player.dir, rot);
 		rotate_vector(&game->player.plane, rot);
-		if(game->keys.mouse_fixed == 1)
+		if (game->keys.mouse_fixed == 1)
 			mlx_mouse_move(game->mlx.mlx_ptr, game->mlx.win_ptr, center_x,
 				IMAGE_HEIGHT / 2);
 	}
