@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:15:11 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/08/31 14:13:54 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,22 @@ static int	count_doors(t_game *game)
 	return (door_count);
 }
 
-static void	set_door_props(t_door *door, int x, int y)
+void	valid_door(t_game *game, int y, int x)
 {
-	door->x = x;
-	door->y = y;
-	door->state = DOOR_CLOSED;
-	door->anim_progress = 0.0;
-	door->anim_speed = 0.05;
+	int	left;
+	int	right;
+	int	up;
+	int	down;
+
+	left = game->map.grid[y][x - 1];
+	right = game->map.grid[y][x + 1];
+	up = game->map.grid[y - 1][x];
+	down = game->map.grid[y + 1][x];
+	if (left == '1' && right == '1' && up == '0' && down == '0')
+		return ;
+	if (up == '1' && down == '1' && left == '0' && right == '0')
+		return ;
+	error_and_cleanup("Error: invalid door placement", game);
 }
 
 void	init_doors(t_game *game)
@@ -63,7 +72,7 @@ void	init_doors(t_game *game)
 		while (x < (int)ft_strlen(game->map.grid[y]))
 		{
 			if (game->map.grid[y][x] == 'D')
-				set_door_props(&game->map.doors[door_index++], x, y);
+				valid_door(game, y, x);
 			x++;
 		}
 		y++;
