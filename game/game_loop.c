@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:46:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/29 17:53:46 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/01 10:08:35 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,35 @@ void	draw_player_anim(t_game *game)
 	draw_sprite(game, frame, screen_x, screen_y);
 }
 
-static void	update_position(t_game *game, double new_x, double new_y)
-{
-	int	map_x;
-	int	map_y;
 
-	map_x = (int)(game->player.pos.x);
-	map_y = (int)(game->player.pos.y);
-	if (game->map.grid[map_y][(int)new_x] != '1'
-		&& game->map.grid[map_y][(int)new_x] != 'D')
-		game->player.pos.x = new_x;
-	if (game->map.grid[(int)new_y][map_x] != '1'
-		&& game->map.grid[(int)new_y][map_x] != 'D')
-		game->player.pos.y = new_y;
+static int is_wall(t_game *g, int x, int y)
+{
+    if (y < 0 || x < 0 || y >= g->map.height || x >= g->map.width)
+        return 1;
+    char c = g->map.grid[y][x];
+    return (c == '1' || c == 'D');
 }
 
+static int blocked(t_game *g, double x, double y, double r)
+{
+    return (is_wall(g, (int)(x - r), (int)(y - r)) ||
+            is_wall(g, (int)(x + r), (int)(y - r)) ||
+            is_wall(g, (int)(x - r), (int)(y + r)) ||
+            is_wall(g, (int)(x + r), (int)(y + r)));
+}
+
+static void update_position(t_game *g, double new_x, double new_y)
+{
+    double r = 0.1; // keep a small space from walls
+
+    // Try move X
+    if (!blocked(g, new_x, g->player.pos.y, r))
+        g->player.pos.x = new_x;
+
+    // Try move Y
+    if (!blocked(g, g->player.pos.x, new_y, r))
+        g->player.pos.y = new_y;
+}
 int	game_loop(t_game *game)
 {
 	double	new_x;
