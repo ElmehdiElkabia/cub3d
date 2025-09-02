@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/31 08:52:54 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/02 09:49:04 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ int				starts_with(char *line, char *id);
 void			detect_type(char *line, t_game *game);
 int				is_empty_or_whitespace(char *str);
 void			replace_player_with_zero(char *line);
-
+int				is_wall(t_game *g, int x, int y);
 int				is_valid_map_char(char c);
 
 #endif

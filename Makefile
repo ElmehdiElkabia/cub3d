@@ -11,7 +11,7 @@ LIBFT_DIR = libft
 LIB = $(LIBFT_DIR)/libft.a
 
 SRC =cub3d.c events/close_program.c  events/handle_keys.c events/handle_mouse.c events/destroy.c \
-	game/game_loop.c game/init_game.c game/set_player.c game/init_minilibx.c game/door_system.c \
+	game/game_loop.c game/init_game.c game/set_player.c game/init_minilibx.c game/door_system.c game/is_wall.c \
 	parser/check_map.c parser/parse_colors.c parser/parse_file.c parser/parse_map.c parser/parse_textures.c parser/flood_fill.c parser/door_parsing.c parser/ft_handle.c parser/ft_check.c \
 	render/draw_walls.c  render/raycasting.c render/render_frame.c render/texture_mapping.c  render/render_colors.c  render/draw_mini_map.c \
 	 textures/load_textures.c \
