@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/02 09:49:04 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/03 09:23:03 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,23 @@ typedef struct s_game
 	int			in_map;
 	t_keys		keys;
 }				t_game;
+
+typedef struct s_mini
+{
+	int			start_x;
+	int			start_y;
+	int			y;
+	int			x;
+	int			map_x;
+	int			map_y;
+	int			size;
+	double		center_tile_x;
+	double		center_tile_y;
+	int			px;
+	int			py;
+	int			dy;
+	int			dx;
+}				t_mini;
 
 void			*parser_file(char *file, t_game *game);
 void			parse_texture(char *line, t_game *game, int id);
