@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/03 09:23:03 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:11:00 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ typedef struct s_game
 	int			map_line_count;
 	int			in_map;
 	t_keys		keys;
+	char *current_line;
 }				t_game;
 
 typedef struct s_mini
@@ -259,11 +260,9 @@ int				key_press_mouse(int button, int x, int y, void *param);
 void			shouting(t_game *data);
 void			draw_player_anim(t_game *game);
 
-// Door parsing functions
 void			init_doors(t_game *game);
 void			free_doors(t_game *game);
 
-// Door drawing functions
 t_door			*get_door_at(t_game *game, int x, int y);
 void			draw_door(t_game *data, t_ray *r, int x);
 void			load_door_texture(t_game *game);

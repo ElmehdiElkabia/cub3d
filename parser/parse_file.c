@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:30:30 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:10:03 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static void	parse_line(char *line, t_game *game, int *has_content)
 	if (is_empty_line(line))
 		return ;
 	*has_content = 1;
+	game->current_line = line;
 	detect_type(line, game);
+	game->current_line = NULL;
 }
 
 static void	validate_required_elements(t_game *game)
@@ -47,11 +49,17 @@ static void	check_map_content_order(char *line, int *map_started,
 		if (is_map_line(line))
 		{
 			if (*map_ended)
+			{
+				free(line);
 				error_and_cleanup("Error: Map content after map ended", game);
+			}
 			*map_started = 1;
 		}
 		else if (*map_started)
+		{
+			free(line);
 			error_and_cleanup("Error: Non-map content after map started", game);
+		}
 	}
 	else if (*map_started && !*map_ended)
 		*map_ended = 1;
@@ -80,6 +88,7 @@ static void	validate_file_content(char *file, t_game *game)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	get_next_line(-1);
 	if (!has_content)
 		error_and_cleanup("Error: Map file is empty", game);
 }
