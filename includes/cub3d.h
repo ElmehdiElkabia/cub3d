@@ -179,7 +179,7 @@ typedef struct s_game
 	int			map_line_count;
 	int			in_map;
 	t_keys		keys;
-	char *current_line;
+	char		*current_line;
 }				t_game;
 
 typedef struct s_mini
