@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check.c                                         :+:      :+:    :+:   */
+/*   ft_check_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:39:45 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:43:19 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	is_map_line(char *line)
 {
@@ -20,7 +20,8 @@ int	is_map_line(char *line)
 	while (line[i])
 	{
 		if (line[i] == '1' || line[i] == '0' || line[i] == ' ' || line[i] == 'N'
-			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W'
+			|| line[i] == 'D')
 		{
 			while (line[i])
 			{

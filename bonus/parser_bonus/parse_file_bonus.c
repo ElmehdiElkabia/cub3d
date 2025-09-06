@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   parse_file_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:42:14 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 static void	parse_line(char *line, t_game *game, int *has_content)
 {
@@ -101,5 +101,6 @@ void	*parser_file(char *file, t_game *game)
 	game->map.height = game->map_line_count;
 	game->map.width = get_map_width(game);
 	check_map(game);
+	init_doors(game);
 	return (NULL);
 }

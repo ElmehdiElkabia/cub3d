@@ -1,16 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
+/*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:46:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:51:57 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
+
+void	draw_sprite(t_game *game, t_texture *tex, int screen_x, int screen_y)
+{
+	char			*src;
+	unsigned int	color;
+	int				i;
+	int				j;
+
+	j = 0;
+	while (j < tex->height)
+	{
+		i = 0;
+		while (i < tex->width)
+		{
+			src = tex->addr + (j * tex->line_len + i * (tex->bpp / 8));
+			color = *(unsigned int *)src;
+			if ((color & 0x00FFFFFF) != 0)
+				my_mlx_pixel_put(&game->img, screen_x + i, screen_y + j, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+void	draw_player_anim(t_game *game)
+{
+	t_texture	*frame;
+	int			screen_x;
+	int			screen_y;
+
+	frame = &game->player.anim[game->player.frame];
+	screen_x = IMAGE_WIDTH / 2 - frame->width / 2;
+	screen_y = (IMAGE_HEIGHT - 250) - frame->height / 2;
+	draw_sprite(game, frame, screen_x, screen_y);
+}
 
 static int	blocked(t_game *g, double x, double y, double r)
 {

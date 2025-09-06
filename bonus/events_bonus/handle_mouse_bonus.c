@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_mouse.c                                     :+:      :+:    :+:   */
+/*   handle_mouse_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 12:21:01 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/31 09:15:35 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	handle_mouse(int x, int y, t_game *game)
 {

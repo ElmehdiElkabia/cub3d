@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_system.c                                      :+:      :+:    :+:   */
+/*   door_system_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 10:58:15 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 10:58:26 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	handel_dor(t_game *data)
 {

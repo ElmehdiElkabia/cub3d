@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:50:55 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 11:58:21 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-# include "../get_next_line/get_next_line.h"
-# include "../libft/libft.h"
+# include "../../get_next_line/get_next_line.h"
+# include "../../libft/libft.h"
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
@@ -25,12 +25,30 @@
 # define IMAGE_WIDTH 1280
 # define IMAGE_HEIGHT 720
 # define TILE_SIZE 64
+# define MINI_VIEW_W 10
+# define MINI_VIEW_H 10
+# define MINI_TILE 10
+# define MINI_MAP 8
 # define M_PI 3.14159265358979323846
 # define FOV_ANGLE 1.0471975511965976
 # define NORTH 0
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+
+# define DOOR_CLOSED 0
+# define DOOR_OPENING 1
+# define DOOR_OPEN 2
+# define DOOR_CLOSING 3
+
+typedef struct s_door
+{
+	int			x;
+	int			y;
+	int			state;
+	double		anim_progress;
+	double		anim_speed;
+}				t_door;
 
 typedef struct s_texture
 {
@@ -57,6 +75,10 @@ typedef struct s_player
 	t_vector	plane;
 	double		move_speed;
 	double		rot_speed;
+	t_texture	anim[4];
+	int			frame;
+	int			frame_counter;
+	int			anim_playing;
 }				t_player;
 
 typedef struct s_color
@@ -73,6 +95,8 @@ typedef struct s_map
 	int			height;
 	t_color		floor;
 	t_color		ceiling;
+	t_door		*doors;
+	int			door_count;
 }				t_map;
 
 typedef struct s_img
@@ -150,12 +174,30 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	texture[4];
+	t_texture	door_texture;
 	char		**map_lines;
 	int			map_line_count;
 	int			in_map;
 	t_keys		keys;
 	char		*current_line;
 }				t_game;
+
+typedef struct s_mini
+{
+	int			start_x;
+	int			start_y;
+	int			y;
+	int			x;
+	int			map_x;
+	int			map_y;
+	int			size;
+	double		center_tile_x;
+	double		center_tile_y;
+	int			px;
+	int			py;
+	int			dy;
+	int			dx;
+}				t_mini;
 
 void			*parser_file(char *file, t_game *game);
 void			parse_texture(char *line, t_game *game, int id);
@@ -211,8 +253,20 @@ void			draw_color(t_game *game, t_ray *ray, int x);
 void			rotate_vector(t_vector *vec, double angle);
 
 void			handle_rotation(t_game *game);
+int				handle_mouse(int x, int y, t_game *game);
 
+void			draw_mini_map(t_game *game);
+int				key_press_mouse(int button, int x, int y, void *param);
+void			shouting(t_game *data);
 void			draw_player_anim(t_game *game);
+
+void			init_doors(t_game *game);
+void			free_doors(t_game *game);
+
+t_door			*get_door_at(t_game *game, int x, int y);
+void			draw_door(t_game *data, t_ray *r, int x);
+void			load_door_texture(t_game *game);
+void			handel_dor(t_game *data);
 
 int				starts_with(char *line, char *id);
 void			detect_type(char *line, t_game *game);

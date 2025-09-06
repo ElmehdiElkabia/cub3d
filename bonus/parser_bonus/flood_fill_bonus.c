@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:16:49 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:44:07 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 char	**duplicate_map(char **original)
 {
@@ -89,7 +89,7 @@ void	flood_fill_recursive(char **map, int x, int y, int *error_flag)
 	}
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	if (map[y][x] == '0')
+	if (map[y][x] == '0' || map[y][x] == 'D')
 		return ;
 	map[y][x] = 'F';
 	flood_fill_recursive(map, x + 1, y, error_flag);

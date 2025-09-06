@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_keys.c                                      :+:      :+:    :+:   */
+/*   handle_keys_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:41:23 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:46:40 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	key_press(int keycode, t_game *game)
 {
@@ -28,6 +28,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys.right = 1;
 	else if (keycode == 65307)
 		game->keys.esc = 1;
+	else if (keycode == 101)
+		handel_dor(game);
 	else if (keycode == 65505)
 		game->keys.mouse_fixed = 0;
 	else if (keycode == 65509)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 13:09:07 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:43:44 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 static int	is_edge(int x, int y, int actual_len, int max_y)
 {
@@ -64,7 +64,7 @@ void	check_all_zeros_enclosed(t_game *game)
 		{
 			if (game->map.grid[y][x] == '0' || game->map.grid[y][x] == 'N'
 				|| game->map.grid[y][x] == 'S' || game->map.grid[y][x] == 'E'
-				|| game->map.grid[y][x] == 'W')
+				|| game->map.grid[y][x] == 'W' || game->map.grid[y][x] == 'D')
 			{
 				if (is_boundary_violation(game->map.grid, x, y))
 					error_and_cleanup("Map is not closed", game);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_free_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:17:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:40:43 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	ft_free_split(char **arr)
 {
@@ -38,6 +38,7 @@ void	free_map_data(t_game *data)
 		data->map_lines = NULL;
 		data->map.grid = NULL;
 	}
+	free_doors(data);
 }
 
 void	free_texture_paths(t_game *data)
@@ -52,7 +53,17 @@ void	free_texture_paths(t_game *data)
 			free(data->texture[i].path);
 			data->texture[i].path = NULL;
 		}
+		if (data->player.anim[i].path)
+		{
+			free(data->player.anim[i].path);
+			data->player.anim[i].path = NULL;
+		}
 		i++;
+	}
+	if (data->door_texture.path)
+	{
+		free(data->door_texture.path);
+		data->door_texture.path = NULL;
 	}
 }
 
@@ -69,7 +80,19 @@ void	free_texture_images(t_game *data)
 			data->texture[i].img = NULL;
 			data->texture[i].addr = NULL;
 		}
+		if (data->player.anim[i].img && data->mlx.mlx_ptr)
+		{
+			mlx_destroy_image(data->mlx.mlx_ptr, data->player.anim[i].img);
+			data->player.anim[i].img = NULL;
+			data->texture[i].addr = NULL;
+		}
 		i++;
+	}
+	if (data->door_texture.img && data->mlx.mlx_ptr)
+	{
+		mlx_destroy_image(data->mlx.mlx_ptr, data->door_texture.img);
+		data->door_texture.img = NULL;
+		data->door_texture.addr = NULL;
 	}
 }
 

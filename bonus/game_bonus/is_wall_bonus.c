@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wall.c                                          :+:      :+:    :+:   */
+/*   is_wall_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:49:47 by ayadouay          #+#    #+#             */
-/*   Updated: 2025/09/06 11:44:39 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	is_wall(t_game *g, int x, int y)
 {
@@ -19,5 +19,5 @@ int	is_wall(t_game *g, int x, int y)
 	if (y < 0 || x < 0 || y >= g->map.height || x >= g->map.width)
 		return (1);
 	c = g->map.grid[y][x];
-	return (c == '1');
+	return (c == '1' || c == 'D');
 }

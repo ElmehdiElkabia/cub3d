@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:20:18 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:41:52 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	init_map(t_map *map)
 {
@@ -23,6 +23,8 @@ void	init_map(t_map *map)
 	map->ceiling.r = -1;
 	map->ceiling.g = -1;
 	map->ceiling.b = -1;
+	map->doors = NULL;
+	map->door_count = 0;
 }
 
 void	init_player(t_player *player)
@@ -54,6 +56,14 @@ void	init_texture(t_game *data)
 		data->texture[i].endian = 0;
 		i++;
 	}
+	data->door_texture.path = NULL;
+	data->door_texture.img = NULL;
+	data->door_texture.addr = NULL;
+	data->door_texture.width = 0;
+	data->door_texture.height = 0;
+	data->door_texture.bpp = 0;
+	data->door_texture.line_len = 0;
+	data->door_texture.endian = 0;
 }
 
 void	init_game(t_game *data)

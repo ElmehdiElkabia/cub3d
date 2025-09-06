@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:16:19 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:45:08 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	calculate_step_side(t_game *data, t_ray *ray)
 {
@@ -75,7 +75,8 @@ void	perform_dda(t_game *data, t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1')
+		if (data->map.grid[(int)ray->map.y][(int)ray->map.x] == '1'
+			|| data->map.grid[(int)ray->map.y][(int)ray->map.x] == 'D')
 			break ;
 	}
 }

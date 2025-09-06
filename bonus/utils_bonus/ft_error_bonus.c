@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:40:15 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	print_error(char *str)
 {
@@ -33,4 +33,14 @@ void	error_and_cleanup(char *str, t_game *game)
 		free_texture_data(game);
 	}
 	exit(1);
+}
+
+void	free_doors(t_game *game)
+{
+	if (game->map.doors)
+	{
+		free(game->map.doors);
+		game->map.doors = NULL;
+	}
+	game->map.door_count = 0;
 }
