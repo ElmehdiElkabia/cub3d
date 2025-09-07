@@ -39,7 +39,9 @@ $(LIB):
 $(NAME): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(OBJ) $(LIB) $(MFLAGS) -o $(NAME)
 
-bonus: $(OBJ_BONUS) $(LIB)
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJ_BONUS) $(LIB)
 	$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIB) $(MFLAGS) -o $(NAME_BONUS)
 
 clean:
