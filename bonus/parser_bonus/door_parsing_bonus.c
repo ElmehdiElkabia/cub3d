@@ -6,11 +6,17 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/08 09:52:12 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:53:45 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d_bonus.h"
+
+void	set_door_data(t_game *data)
+{
+	data->map.doors->x = 0;
+	data->map.doors->y = 0;
+}
 
 static int	count_doors(t_game *game)
 {
@@ -54,7 +60,7 @@ void	valid_door(t_game *game, int y, int x)
 
 void	init_doors(t_game *game)
 {
-	int (x), (y), (door_index);
+	int (x), (y);
 	game->map.door_count = count_doors(game);
 	if (game->map.door_count == 0)
 	{
@@ -64,7 +70,7 @@ void	init_doors(t_game *game)
 	game->map.doors = malloc(sizeof(t_door) * game->map.door_count);
 	if (!game->map.doors)
 		error_and_cleanup("Failed to allocate doors", game);
-	door_index = 0;
+	set_door_data(game);
 	y = 0;
 	while (y < game->map.height)
 	{
