@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/31 14:14:20 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:48:36 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	parse_colors(char *line, t_game *game, int id)
 	if (id == 1 && game->map.ceiling.r != -1)
 		error_and_cleanup("Error: Ceiling color defined more than once", game);
 	i = skip_identifier(line, id);
-	if (i == -1)
+	if (i == -1 || check_comma(line + i) != 2)
 		error_and_cleanup("Invalid color line", game);
 	colors = ft_split(line + i, ',');
 	validate_color_values(colors, game);

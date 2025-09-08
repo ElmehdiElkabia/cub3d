@@ -16,7 +16,7 @@ SRC = cub3d.c \
 	parser/check_map.c parser/parse_colors.c parser/parse_file.c parser/parse_map.c parser/parse_textures.c parser/flood_fill.c parser/ft_handle.c parser/ft_check.c \
 	render/draw_walls.c render/raycasting.c render/render_frame.c render/texture_mapping.c render/render_colors.c \
 	textures/load_textures.c \
-	utils/ft_error.c utils/ft_free.c utils/ft_utils.c \
+	utils/ft_error.c utils/ft_free.c utils/ft_utils.c utils/check_comma.c \
 	get_next_line/get_next_line.c
 
 SRC_BONUS = bonus/cub3d_bonus.c \
@@ -26,7 +26,7 @@ SRC_BONUS = bonus/cub3d_bonus.c \
 	bonus/render_bonus/draw_mini_map_bonus.c bonus/render_bonus/draw_walls_bonus.c bonus/render_bonus/raycasting_bonus.c bonus/render_bonus/render_frame_bonus.c bonus/render_bonus/texture_mapping_bonus.c bonus/render_bonus/render_colors_bonus.c bonus/render_bonus/update_map_bonus.c \
 	bonus/textures_bonus/load_textures_bonus.c \
 	get_next_line/get_next_line.c \
-	bonus/utils_bonus/ft_error_bonus.c bonus/utils_bonus/ft_free_bonus.c bonus/utils_bonus/ft_utils_bonus.c
+	bonus/utils_bonus/ft_error_bonus.c bonus/utils_bonus/ft_free_bonus.c bonus/utils_bonus/ft_utils_bonus.c bonus/utils_bonus/check_comma_bonus.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)

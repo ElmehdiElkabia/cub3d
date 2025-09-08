@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:51:53 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	parse_colors(char *line, t_game *game, int id)
 	if (id == 1 && game->map.ceiling.r != -1)
 		error_and_cleanup("Error: Ceiling color defined more than once", game);
 	i = skip_identifier(line, id);
-	if (i == -1)
+	if (i == -1 || check_comma(line + i) != 2)
 		error_and_cleanup("Invalid color line", game);
 	colors = ft_split(line + i, ',');
 	validate_color_values(colors, game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:50:55 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:36:14 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,6 @@ int				is_empty_or_whitespace(char *str);
 void			replace_player_with_zero(char *line);
 int				is_wall(t_game *g, int x, int y);
 int				is_valid_map_char(char c);
+int				check_comma(char *line);
 
 #endif
