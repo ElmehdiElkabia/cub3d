@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/09 11:32:39 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:42:06 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	print_error(char *str)
 {
-	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(str, 2);
 }
 
