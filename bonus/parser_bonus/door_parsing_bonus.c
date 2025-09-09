@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/08 11:53:45 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/09 10:40:09 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 void	set_door_data(t_game *data)
 {
-	data->map.doors->x = 0;
-	data->map.doors->y = 0;
+	int	i;
+
+	i = 0;
+	while (i < data->map.door_count)
+	{
+		data->map.doors[i].x = 0;
+		data->map.doors[i].y = 0;
+		data->map.doors[i].anim_progress = 0;
+		data->map.doors[i].state = 0;
+		i++;
+	}
 }
 
 static int	count_doors(t_game *game)
