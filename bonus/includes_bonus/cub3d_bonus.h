@@ -204,7 +204,7 @@ void			parse_texture(char *line, t_game *game, int id);
 void			parse_colors(char *line, t_game *game, int id);
 void			parse_map(char *line, t_game *game);
 int				is_map_line(char *line);
-void				print_error(char *str);
+void			print_error(char *str);
 void			error_and_cleanup(char *str, t_game *game);
 void			ft_free_split(char **arr);
 void			check_map(t_game *game);
