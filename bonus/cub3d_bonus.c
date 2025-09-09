@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:18:55 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 12:02:36 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/09 11:30:16 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	validate_file(char *filename)
 	int	len;
 
 	if (!filename)
-		print_error("Error: No filename provided");
+		(print_error("No filename provided"), exit(1));
 	len = ft_strlen(filename);
 	if (len < 4 || ft_strncmp(filename + len - 4, ".cub", 4) != 0)
-		print_error("Error: Map file must have .cub extension");
+		(print_error("Map file must have .cub extension"), exit(1));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		print_error("Error: Cannot open map file");
+		(print_error("Cannot open map file"), exit(1));
 	close(fd);
 	return (1);
 }
@@ -34,7 +34,10 @@ int	main(int argc, char **argv)
 	t_game	data;
 
 	if (argc != 2)
-		return (print_error("Usage: ./cub3D <map_file.cub>"));
+	{
+		print_error("Usage: ./cub3D <map_file.cub>");
+		exit(1);
+	}
 	if (!validate_file(argv[1]))
 		return (1);
 	init_game(&data);

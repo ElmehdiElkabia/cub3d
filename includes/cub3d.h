@@ -6,7 +6,7 @@
 /*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 09:54:53 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/08 09:36:14 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/09 11:04:41 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void			parse_texture(char *line, t_game *game, int id);
 void			parse_colors(char *line, t_game *game, int id);
 void			parse_map(char *line, t_game *game);
 int				is_map_line(char *line);
-int				print_error(char *str);
+void				print_error(char *str);
 void			error_and_cleanup(char *str, t_game *game);
 void			ft_free_split(char **arr);
 void			check_map(t_game *game);

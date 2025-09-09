@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:40:15 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/09 11:32:39 by ayadouay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	print_error(char *str)
+void	print_error(char *str)
 {
-	printf("%s\n", str);
-	exit(1);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(str, 2);
 }
 
 void	error_and_cleanup(char *str, t_game *game)
 {
-	printf("%s\n", str);
+	print_error(str);
 	if (game)
 	{
 		if (game->current_line)
