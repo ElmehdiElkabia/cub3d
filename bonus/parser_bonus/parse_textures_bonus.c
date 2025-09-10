@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:03:10 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 12:00:02 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:54:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	validate_texture_path(char *path, t_game *game)
 	int	fd;
 
 	if (!path)
-		error_and_cleanup("Error: Empty texture path", game);
+		error_and_cleanup("Empty texture path", game);
 	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(path + len - 4, ".xpm", 4) != 0)
-		error_and_cleanup("Error: Texture must be .xpm file", game);
+		error_and_cleanup("Texture must be .xpm file", game);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_and_cleanup("Error: Cannot open texture file", game);
+		error_and_cleanup("Cannot open texture file", game);
 	close(fd);
 }
 

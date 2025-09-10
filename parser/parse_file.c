@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:29:09 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/06 11:42:14 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:54:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static void	validate_required_elements(t_game *game)
 	while (i < 4)
 	{
 		if (!game->texture[i].path)
-			error_and_cleanup("Error: Missing texture", game);
+			error_and_cleanup("Missing texture", game);
 		i++;
 	}
 	if (game->map.floor.r == -1)
-		error_and_cleanup("Error: Missing floor color", game);
+		error_and_cleanup("Missing floor color", game);
 	if (game->map.ceiling.r == -1)
-		error_and_cleanup("Error: Missing ceiling color", game);
+		error_and_cleanup("Missing ceiling color", game);
 	if (game->map_line_count == 0)
-		error_and_cleanup("Error: Map missing", game);
+		error_and_cleanup("Map missing", game);
 }
 
 static void	check_map_content_order(char *line, int *map_started,
@@ -51,14 +51,14 @@ static void	check_map_content_order(char *line, int *map_started,
 			if (*map_ended)
 			{
 				free(line);
-				error_and_cleanup("Error: Map content after map ended", game);
+				error_and_cleanup("Map content after map ended", game);
 			}
 			*map_started = 1;
 		}
 		else if (*map_started)
 		{
 			free(line);
-			error_and_cleanup("Error: Non-map content after map started", game);
+			error_and_cleanup("Non-map content after map started", game);
 		}
 	}
 	else if (*map_started && !*map_ended)
@@ -78,7 +78,7 @@ static void	validate_file_content(char *file, t_game *game)
 	map_ended = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_and_cleanup("Error: Cannot open file", game);
+		error_and_cleanup("Cannot open file", game);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -90,7 +90,7 @@ static void	validate_file_content(char *file, t_game *game)
 	close(fd);
 	get_next_line(-1);
 	if (!has_content)
-		error_and_cleanup("Error: Map file is empty", game);
+		error_and_cleanup("Map file is empty", game);
 }
 
 void	*parser_file(char *file, t_game *game)

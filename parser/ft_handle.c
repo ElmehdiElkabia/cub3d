@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelkabia <eelkabia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 12:30:13 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/08/30 12:32:10 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:54:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	starts_with(char *line, char *id)
 static void	handle_texture(char *line, t_game *game, int idx)
 {
 	if (game->in_map)
-		error_and_cleanup("Error: Texture definition after map", game);
+		error_and_cleanup("Texture definition after map", game);
 	parse_texture(line, game, idx);
 }
 
 static void	handle_color(char *line, t_game *game, int idx)
 {
 	if (game->in_map)
-		error_and_cleanup("Error: Color definition after map", game);
+		error_and_cleanup("Color definition after map", game);
 	parse_colors(line, game, idx);
 }
 
@@ -68,5 +68,5 @@ void	detect_type(char *line, t_game *game)
 		parse_map(line, game);
 	}
 	else
-		error_and_cleanup("Error: Invalid line format", game);
+		error_and_cleanup("Invalid line format", game);
 }

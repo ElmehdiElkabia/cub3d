@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:32:51 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/08 11:54:34 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:54:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ void	parse_colors(char *line, t_game *game, int id)
 	char	**colors;
 
 	if (id == 0 && game->map.floor.r != -1)
-		error_and_cleanup("Error: Floor color defined more than once", game);
+		error_and_cleanup("Floor color defined more than once", game);
 	if (id == 1 && game->map.ceiling.r != -1)
-		error_and_cleanup("Error: Ceiling color defined more than once", game);
+		error_and_cleanup("Ceiling color defined more than once", game);
 	i = skip_identifier(line, id);
 	if (i == -1 || check_comma(line + i) != 2)
 		error_and_cleanup("Invalid color line", game);

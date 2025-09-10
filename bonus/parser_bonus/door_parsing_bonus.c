@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_parsing_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayadouay <ayadouay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 00:00:00 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/09 10:40:09 by ayadouay         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:54:39 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	valid_door(t_game *game, int y, int x)
 		return ;
 	if (up == '1' && down == '1' && left == '0' && right == '0')
 		return ;
-	error_and_cleanup("Error: invalid door placement", game);
+	error_and_cleanup("invalid door placement", game);
 }
 
 void	init_doors(t_game *game)
