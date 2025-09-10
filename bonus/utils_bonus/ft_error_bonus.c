@@ -6,7 +6,7 @@
 /*   By: eelkabia <eelkabia@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:33:56 by eelkabia          #+#    #+#             */
-/*   Updated: 2025/09/09 18:41:55 by eelkabia         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:52:40 by eelkabia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_error(char *str)
 {
+	ft_putendl_fd("Error". 2);
 	ft_putendl_fd(str, 2);
 }
 
